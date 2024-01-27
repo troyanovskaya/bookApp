@@ -1,0 +1,23 @@
+.logo{
+  display: flex;
+  font-size: 1.2em;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+  flex-direction: row;
+  row-gap: 20px;
+  width:fit-content;
+  padding: 10px;
+  .label{
+    color:white;
+    font-family: serif;
+  }
+  .logo-img{
+    content: url("../../assets/logo1.png");
+    max-width: 50px;
+    height: auto;
+  }
+  .small-letter{
+    font-size: 0.8em;
+  }
+}

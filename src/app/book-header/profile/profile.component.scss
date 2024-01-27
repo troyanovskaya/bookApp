@@ -1,0 +1,19 @@
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.sign{
+  color: white;
+  background-color: #0b193c;
+  border: 0px solid white;
+  border-radius: 8px;
+  padding: 2px;
+  font-size: 1.1em;
+}
+.sign-img{
+  content: url("/assets/sign-in.png");
+  max-width: 20px;
+  height: auto;
+}
+
