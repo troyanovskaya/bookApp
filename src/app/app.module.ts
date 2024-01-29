@@ -8,6 +8,7 @@ import { LogoComponent } from './book-header/logo/logo.component';
 import { NavigationComponent } from './book-header/navigation/navigation.component';
 import { SearchComponent } from './book-header/search/search.component';
 import { ProfileComponent } from './book-header/profile/profile.component';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProfileComponent } from './book-header/profile/profile.component';
     LogoComponent,
     NavigationComponent,
     SearchComponent,
-    ProfileComponent
+    ProfileComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
