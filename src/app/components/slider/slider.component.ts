@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import {SlideInterface} from '../schemas/img-slider'
+import {SlideInterface} from '../../schemas/img-slider'
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',

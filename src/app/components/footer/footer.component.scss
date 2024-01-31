@@ -1,0 +1,29 @@
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  min-height: 20vh;
+  background-color: #0b193c;
+  position: relative;
+}
+.icon{
+  width: 35px;
+}
+.text{
+  max-width: 25%;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-10%, -50%);
+  font-size: 1.2em;
+}
+.copyrights{
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%);
+}
