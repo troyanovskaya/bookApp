@@ -8,9 +8,9 @@ import {SlideInterface} from '../schemas/img-slider'
 })
 export class SliderComponent implements OnInit, OnDestroy {
   //@Input() slides: SlideInterface[] = [];
-  slides: SlideInterface[] = [{url: '/assets/slider1/slide1.png', title: 'slide1'},
-  {url: '/assets/slider1/slide2.png', title: 'slide2'},
-  {url: '/assets/slider1/slide3.png', title: 'slide3'}
+  slides: SlideInterface[] = [{url: 'assets/slider1/slide1.png', title: 'slide1'},
+  {url: 'assets/slider1/slide2.png', title: 'slide2'},
+  {url: 'assets/slider1/slide3.png', title: 'slide3'}
 
 ];
 
