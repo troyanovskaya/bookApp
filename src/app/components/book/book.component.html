@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="main">
+    <div class="img-container">
+      <img class="book-img" src="{{this.books[0].img}}" alt="{this.books[0].name}">
+    </div>
+    <div class="description">
+      <div>Name: {{this.books[0].name}}</div>
+      <div>Author: {{this.books[0].author}}</div>
+      <div>Year: {{this.books[0].year}}</div>
+      <app-rate [stars]="3.5"></app-rate>
+    </div>
+  </div>
+  <div class="button-container-0">
+    <div  class="button-container-1">
+      <!-- <img *ngIf="books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart.png" alt="1">
+      <img *ngIf="!books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart2.png" alt="2"> -->
+      <button (click)="dropdown()" class="btn1">{{currentState}}</button>
+      <button (click)="dropdown()" class="btn2"><div class="triangle"></div></button>
+      <div (mouseleave)="visible=false" class="dropdown" *ngIf="visible==true">
+        <div (click)="changeListItem(this.i)"
+        class="list-item"
+        *ngFor="let state of states; index as i">
+         <div *ngIf="currentState!==state">{{state}}</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-3">Learn more</button>
+  </div>
+
+</div>

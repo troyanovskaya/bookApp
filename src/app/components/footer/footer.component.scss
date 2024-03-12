@@ -9,7 +9,10 @@ footer{
   position: relative;
 }
 .icon{
-  width: 35px;
+  width: 30px;
+}
+.icon:hover{
+  cursor:pointer;
 }
 .text{
   max-width: 25%;

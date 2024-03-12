@@ -10,6 +10,8 @@ import { SearchComponent } from './components/book-header/search/search.componen
 import { ProfileComponent } from './components/book-header/profile/profile.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BookComponent } from './components/book/book.component';
+import { RateComponent } from './components/rate/rate.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { FooterComponent } from './components/footer/footer.component';
     SearchComponent,
     ProfileComponent,
     SliderComponent,
-    FooterComponent
+    FooterComponent,
+    BookComponent,
+    RateComponent
   ],
   imports: [
     BrowserModule,
