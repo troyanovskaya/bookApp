@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { VisibilityService } from 'src/app/services/visibility.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-sign-in-form',
+  templateUrl: './sign-in-form.component.html',
+  styleUrls: ['./sign-in-form.component.scss']
 })
-export class ProfileComponent {
+export class SignInFormComponent {
   constructor(public visibilityService: VisibilityService){}
+
 }

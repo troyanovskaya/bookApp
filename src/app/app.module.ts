@@ -12,6 +12,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BookComponent } from './components/book/book.component';
 import { RateComponent } from './components/rate/rate.component';
+import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RateComponent } from './components/rate/rate.component';
     SliderComponent,
     FooterComponent,
     BookComponent,
-    RateComponent
+    RateComponent,
+    SignInFormComponent
   ],
   imports: [
     BrowserModule,
