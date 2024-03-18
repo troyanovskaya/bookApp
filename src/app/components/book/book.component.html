@@ -1,12 +1,12 @@
 <div class="wrapper">
   <div class="main">
     <div class="img-container">
-      <img class="book-img" src="{{this.books[0].img}}" alt="{this.books[0].name}">
+      <img class="book-img" src="{{this.book?.img}}" alt="{{this.book?.name}}">
     </div>
     <div class="description">
-      <div>Name: {{this.books[0].name}}</div>
-      <div>Author: {{this.books[0].author}}</div>
-      <div>Year: {{this.books[0].year}}</div>
+      <div>Name: {{this.book?.name}}</div>
+      <div>Author: {{this.book?.author}}</div>
+      <div>Year: {{this.book?.year}}</div>
       <app-rate [stars]="3.5"></app-rate>
     </div>
   </div>

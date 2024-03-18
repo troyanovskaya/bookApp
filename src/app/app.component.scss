@@ -5,3 +5,12 @@
 .wrapper{
   min-height: 80vh;
 }
+.book-row{
+  display:flex;
+ flex-direction: row;
+ gap:20px;
+ flex-wrap:wrap;
+ padding:40px;
+ align-items: center;
+ justify-content: center;
+}
