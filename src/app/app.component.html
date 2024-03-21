@@ -1,12 +1,14 @@
 <app-sign-in-form *ngIf="visibilityService.showSignForm" ></app-sign-in-form>
+<app-registration *ngIf="visibilityService.showRegistrationForm" ></app-registration>
 <div class="wrapper">
   <app-book-header></app-book-header>
   <div class="slider">
     <app-slider></app-slider>
   </div>
-</div>
+
 <div class="book-row">
   <app-book *ngFor="let book of books" [book]="book"></app-book>
+</div>
 </div>
 <app-footer></app-footer>
 

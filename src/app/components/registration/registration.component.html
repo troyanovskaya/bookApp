@@ -1,0 +1,19 @@
+<div class=wrapper (click)="visibilityService.showRegistrationForm=false"></div>
+<div class="window">
+  <div class="text-1">Registration</div>
+  <div class="input-container">
+    <input placeholder="email" type="text">
+    <input placeholder="login" type="text">
+    <input placeholder="password" type="text">
+    <input placeholder="password" type="text">
+  </div>
+  <div class="button-container">
+    <button class="btn-3" (click)="visibilityService.showRegistrationForm=false">Register</button>
+  </div>
+
+
+  <div class="cross-container" (click)="visibilityService.showRegistrationForm=false">
+    <img src="assets/cross.png" alt="cross">
+  </div>
+
+</div>

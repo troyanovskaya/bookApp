@@ -6,6 +6,13 @@
     <input placeholder="password" type="text">
   </div>
   <div class="text-2">Don't have an account?</div>
-  <div class="text-3">Register now</div>
+  <div class="text-3"
+  (click)="openRegistrationWindow()">Register now</div>
+  <div class="button-container">
+    <button class="btn-3" (click)="visibilityService.showSignForm=false">Sign in</button>
+  </div>
+  <div class="cross-container" (click)="visibilityService.showSignForm=false">
+    <img src="assets/cross.png" alt="cross">
+  </div>
 
 </div>

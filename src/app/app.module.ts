@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BookComponent } from './components/book/book.component';
 import { RateComponent } from './components/rate/rate.component';
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SignInFormComponent } from './components/sign-in-form/sign-in-form.comp
     FooterComponent,
     BookComponent,
     RateComponent,
-    SignInFormComponent
+    SignInFormComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
