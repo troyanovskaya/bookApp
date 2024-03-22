@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Book } from 'src/app/schemas/book';
 
 @Component({
   selector: 'app-book',
@@ -7,7 +8,7 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 })
 export class BookComponent {
   @Input()
-    book?:{name:string, year: number, author:string, description:string[], img:string, state:string, saved:boolean}
+    book?:Book
   states:string[] = ["Unread", "Read", "Saved", "Dropped"]
   visible:boolean=false;
   currentState:string = this.states[0];

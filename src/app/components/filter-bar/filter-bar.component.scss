@@ -1,0 +1,16 @@
+.container{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #0b193c;
+  div:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+.chosen{
+  font-weight: bolder;
+}

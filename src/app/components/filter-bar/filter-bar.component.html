@@ -1,0 +1,21 @@
+<div *ngIf="filterService.searchString!==''" class="container">
+  <div (click)="onclick('all')"
+  [ngClass]="{'chosen': filterService.searchChosen.all}">
+    {{"All("+ filterService.searchByProperties.all+")"}}
+  </div>
+  <div (click)="onclick('byName')"
+  [ngClass]="{'chosen': filterService.searchChosen.byName}">
+    {{"By name("+ filterService.searchByProperties.byName+")"}}
+  </div>
+  <div (click)="onclick('byAuthor')"
+  [ngClass]="{'chosen': filterService.searchChosen.byAuthor}">
+    {{"By author("+ filterService.searchByProperties.byAuthor +")"}}
+  </div>
+  <div (click)="onclick('byDescription')"
+  [ngClass]="{'chosen': filterService.searchChosen.byDescription}">
+    {{"By description("+ filterService.searchByProperties.byDescription+")"}}
+  </div>
+  <div (click)="onclick('byKeyWords')" [ngClass]="{'chosen': filterService.searchChosen.byKeyWords}">
+    {{"By keywords("+ filterService.searchByProperties.byKeyWords +")"}}
+  </div>
+</div>

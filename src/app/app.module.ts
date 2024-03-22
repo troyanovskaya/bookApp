@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookHeaderComponent } from './components/book-header/book-header.component';
@@ -14,6 +14,7 @@ import { BookComponent } from './components/book/book.component';
 import { RateComponent } from './components/rate/rate.component';
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,13 @@ import { RegistrationComponent } from './components/registration/registration.co
     BookComponent,
     RateComponent,
     SignInFormComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    FilterBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
