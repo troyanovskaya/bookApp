@@ -1,15 +1,21 @@
+import { Author } from "./author";
+import { Genre } from "./genre";
 import { SearchBy } from "./searchBy";
+import { Series } from "./series";
+import { User } from "./user";
 
 export interface Book {
-  id:string;
-  name:string,
-  year: number,
-  author:string,
-  genres:string[],
-  description:string[],
-  img:string,
-  state:string,
-  keywords:string[],
-  search:SearchBy,
-  series?:string[]
+  book_name: String;
+    book_authors: Author[];
+    book_edition_year: Number;
+    book_description: String[];
+    book_keywords: String[];
+    book_genres: Genre[];
+    book_rates: {user: User, rate: Number, date: Date}[];
+    book_average_rate: Number;
+    book_quotes: String[][];
+    book_comments: {user: User, comment: String[], date: Date}[];
+    book_reviews: {user: User, review: String[], date: Date}[];
+    book_img: String;
+    book_series: Series[]
 }

@@ -7,10 +7,10 @@
   </div>
 <app-filter-bar></app-filter-bar>
 <div class="book-row">
-  <div *ngFor="let book of booksService.filteredBooks" >
+  <ng-container *ngFor="let book of booksService.books" >
     <app-book [book]="book"></app-book>
-  </div>
-  <div class="no-results" *ngIf="this.booksService.filteredBooks.length == 0">
+  </ng-container>
+  <div class="no-results" *ngIf="this.booksService.books.length == 0">
     No results found. Try again!
   </div>
 </div>

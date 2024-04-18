@@ -14,6 +14,12 @@ export class AppComponent implements OnInit {
   constructor(public visibilityService: VisibilityService, public filterService: FilterService,
     public booksService: BooksService){}
   ngOnInit(): void {
-    this.booksService.filterBooks();
+    this.booksService.getAllBooks().subscribe( data =>{
+      console.log(typeof data)
+      for (let i = 0; i<data.length; i++){
+        this.booksService.books.push(data[i])
+      }
+      })
+
   }
 }

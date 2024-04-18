@@ -4,8 +4,10 @@
   height: 60px;
   display: flex;
   align-items: center;
-  position: relative;
+  position: sticky;
+  top:0px;
   gap:20px;
+  z-index: 3;
 }
 .content{
   display: flex;

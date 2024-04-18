@@ -1,30 +1,33 @@
 <div class="wrapper">
   <div class="main">
     <div class="img-container">
-      <img class="book-img" src="{{this.book?.img}}" alt="{{this.book?.name}}">
+      <img class="book-img" src="{{this.book?.book_img}}" alt="{{this.book?.book_name}}">
     </div>
     <div class="description">
-      <div>Name: {{this.book?.name}}</div>
-      <div>Author: {{this.book?.author}}</div>
-      <div>Year: {{this.book?.year}}</div>
+      <div>Name: {{this.book?.book_name}}</div>
+      <div>
+        Author: <span *ngFor="let author of this.book?.book_authors">{{author}}</span></div>
+      <div>Year: {{this.book?.book_edition_year}}</div>
       <app-rate [stars]="3.5"></app-rate>
-    </div>
-  </div>
-  <div class="button-container-0">
-    <div  class="button-container-1">
-      <!-- <img *ngIf="books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart.png" alt="1">
-      <img *ngIf="!books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart2.png" alt="2"> -->
-      <button (click)="dropdown()" class="btn1">{{currentState}}</button>
-      <button (click)="dropdown()" class="btn2"><div class="triangle"></div></button>
-      <div (mouseleave)="visible=false" class="dropdown" *ngIf="visible==true">
-        <div (click)="changeListItem(this.i)"
-        class="list-item"
-        *ngFor="let state of states; index as i">
-         <div *ngIf="currentState!==state">{{state}}</div>
+      <p *ngFor="let par of this.book?.book_description">&nbsp;&nbsp;{{par}}</p>
+      <div class="button-container-0">
+        <div  class="button-container-1">
+          <!-- <img *ngIf="books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart.png" alt="1">
+          <img *ngIf="!books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart2.png" alt="2"> -->
+          <button (click)="dropdown()" class="btn1">{{currentState}}</button>
+          <button (click)="dropdown()" class="btn2"><div class="triangle"></div></button>
+          <div (mouseleave)="visible=false" class="dropdown" *ngIf="visible==true">
+            <div (click)="changeListItem(this.i)"
+            class="list-item"
+            *ngFor="let state of states; index as i">
+             <div *ngIf="currentState!==state">{{state}}</div>
+            </div>
+          </div>
         </div>
+        <button class="btn-3">Learn more</button>
       </div>
     </div>
-    <button class="btn-3">Learn more</button>
   </div>
+
 
 </div>

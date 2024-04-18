@@ -15,7 +15,7 @@ import { RateComponent } from './components/rate/rate.component';
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,8 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
