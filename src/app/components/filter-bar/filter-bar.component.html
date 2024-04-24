@@ -1,21 +1,24 @@
-<div *ngIf="filterService.searchString!==''" class="container">
+<div *ngIf="filterService.val!==''" class="container">
   <div (click)="onclick('all')"
-  [ngClass]="{'chosen': filterService.searchChosen.all}">
-    {{"All("+ filterService.searchByProperties.all+")"}}
+  [ngClass]="{'chosen': chosen === 'all'}">
+    {{"All("+ filterService.searchChosen.all+")"}}
   </div>
-  <div (click)="onclick('byName')"
-  [ngClass]="{'chosen': filterService.searchChosen.byName}">
-    {{"By name("+ filterService.searchByProperties.byName+")"}}
+  <div (click)="onclick('name')"
+  [ngClass]="{'chosen': chosen === 'name'}">
+    {{"By name("+ filterService.searchChosen.byName+")"}}
   </div>
-  <div (click)="onclick('byAuthor')"
-  [ngClass]="{'chosen': filterService.searchChosen.byAuthor}">
-    {{"By author("+ filterService.searchByProperties.byAuthor +")"}}
+  <div (click)="onclick('authors')"
+  [ngClass]="{'chosen': chosen === 'authors'}">
+    {{"By author("+ filterService.searchChosen.byAuthor +")"}}
   </div>
-  <div (click)="onclick('byDescription')"
-  [ngClass]="{'chosen': filterService.searchChosen.byDescription}">
-    {{"By description("+ filterService.searchByProperties.byDescription+")"}}
+  <div (click)="onclick('description')"
+  [ngClass]="{'chosen': chosen === 'description'}">
+    {{"By description("+ filterService.searchChosen.byDescription+")"}}
   </div>
-  <div (click)="onclick('byKeyWords')" [ngClass]="{'chosen': filterService.searchChosen.byKeyWords}">
-    {{"By keywords("+ filterService.searchByProperties.byKeyWords +")"}}
+  <div (click)="onclick('keywords')" [ngClass]="{'chosen': chosen === 'keywords'}">
+    {{"By keywords("+ filterService.searchChosen.byKeyWords +")"}}
+  </div>
+  <div (click)="onclick('genres')" [ngClass]="{'chosen': chosen === 'genres'}">
+    {{"By genres("+ filterService.searchChosen.byGenres +")"}}
   </div>
 </div>

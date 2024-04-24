@@ -66,9 +66,9 @@ books:Book[] = [];
     // }
 
   }
-  constructor(public filterService:FilterService, public http: HttpClient) { };
+  constructor(public http: HttpClient) { };
   getAllBooks(){
-    return this.http.get<Book[]>('http://127.0.0.1:8000/books');
+    return this.http.get<Book[]>('http://localhost:3000/books');
 
   }
 }

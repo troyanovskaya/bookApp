@@ -9,10 +9,13 @@ import { FilterService } from 'src/app/services/filter.service';
   styleUrls: ['./filter-bar.component.scss']
 })
 export class FilterBarComponent {
+chosen = 'all';
 onclick(property:string){
-  this.filterService.clearSearchChosen();
-  this.filterService.searchChosen[property as keyof {all:boolean, byName:boolean, byAuthor:boolean, byDescription:boolean, byKeyWords:boolean}] = true;
-  this.booksService.filterBooks();
+  this.filterService.filterBooksBy(property);
+  this.chosen = property;
+  //this.filterService.clearSearchChosen();
+  //this.filterService.searchChosen[property as keyof {all:boolean, byName:boolean, byAuthor:boolean, byDescription:boolean, byKeyWords:boolean}] = true;
+  //this.booksService.filterBooks();
 }
 constructor(public filterService: FilterService, public booksService: BooksService){}
 }

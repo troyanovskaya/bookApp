@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-search',
@@ -6,14 +7,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
-  @Output()
-  newSearch: EventEmitter<string> = new EventEmitter<string>();
 
   searchVal:string = '';
+  constructor(public filterService: FilterService){}
   onInputChange(){
     this.searchVal = this.searchVal.trim().toLowerCase();
-    this.newSearch.emit(this.searchVal);
-    
+    this.filterService.onSearchValueChange(this.searchVal);
+
   }
 
 }

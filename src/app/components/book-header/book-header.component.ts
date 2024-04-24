@@ -8,11 +8,5 @@ import { FilterService } from 'src/app/services/filter.service';
   styleUrls: ['./book-header.component.scss']
 })
 export class BookHeaderComponent {
-  searchValue:string = '';
-  onSearchChange(event: any){
-    this.filterService.clearSearchProperties();
-    this.booksService.filterBooks();
-    this.filterService.searchString = event;
-  }
-  constructor(public filterService: FilterService, public booksService:BooksService){}
+  constructor(){}
 }

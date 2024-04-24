@@ -10,16 +10,19 @@ import { BooksService } from './services/books.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'bookApp';
-  constructor(public visibilityService: VisibilityService, public filterService: FilterService,
-    public booksService: BooksService){}
+  searchVal = '';
+  constructor(public visibilityService: VisibilityService, public filterService: FilterService){}
   ngOnInit(): void {
-    this.booksService.getAllBooks().subscribe( data =>{
-      console.log(typeof data)
-      for (let i = 0; i<data.length; i++){
-        this.booksService.books.push(data[i])
-      }
-      })
+    this.filterService.loadFilterService();
+    this.filterService.searchVal.subscribe(data => {
+      this.searchVal = data
+    });
+
+    // this.booksService.getAllBooks().subscribe( data =>{
+    //   for (let i = 0; i<data.length; i++){
+    //     this.booksService.books.push(data[i])
+    //   }
+    //   })
 
   }
 }

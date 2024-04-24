@@ -6,11 +6,12 @@
     <app-slider></app-slider>
   </div>
 <app-filter-bar></app-filter-bar>
+
 <div class="book-row">
-  <ng-container *ngFor="let book of booksService.books" >
+  <ng-container *ngFor="let book of filterService.filteredBooks" >
     <app-book [book]="book"></app-book>
   </ng-container>
-  <div class="no-results" *ngIf="this.booksService.books.length == 0">
+  <div class="no-results" *ngIf="filterService.filteredBooks.length == 0">
     No results found. Try again!
   </div>
 </div>
