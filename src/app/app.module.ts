@@ -14,8 +14,12 @@ import { BookComponent } from './components/book/book.component';
 import { RateComponent } from './components/rate/rate.component';
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
+import { FilterBarComponent } from './components/home-page/filter-bar/filter-bar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { BookPageComponent } from './components/book-page/book-page.component';
+import { UnderlineDirective } from './derectives/underline.directive';
+import { PointerDirective } from './derectives/pointer.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,11 @@ import { HttpClientModule } from '@angular/common/http';
     RateComponent,
     SignInFormComponent,
     RegistrationComponent,
-    FilterBarComponent
+    FilterBarComponent,
+    HomePageComponent,
+    BookPageComponent,
+    UnderlineDirective,
+    PointerDirective
   ],
   imports: [
     BrowserModule,

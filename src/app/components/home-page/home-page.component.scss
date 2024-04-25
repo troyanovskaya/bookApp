@@ -1,0 +1,16 @@
+.slider{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.book-row{
+  display:flex;
+ flex-direction: row;
+ gap:20px;
+ flex-wrap:wrap;
+ padding:40px;
+ align-items: center;
+ justify-content: center;
+}
+.no-results{
+  font-style: italic;
+}

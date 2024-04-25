@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="img-container">
+    <img [src]="book?.book_img" [alt]="book?.book_name">
+  </div>
+  <div class="description-container">
+    <div routerLink="/books/{{this.book?._id}}">
+      Name:
+      <span>
+        {{this.book?.book_name}}
+      </span>
+    </div>
+    <div>
+      Author: <span underlineD pointerD
+                *ngFor="let author of this.book?.book_authors">
+                {{author}}
+              </span>
+    </div>
+    <div *ngIf="book?.book_series?.length!== 0">
+      Series:
+      <span pointerD underlineD *ngFor="let s of book?.book_series">{{s}}</span>
+    </div>
+    <div>Year: {{this.book?.book_edition_year}}</div>
+    <app-rate [stars]="3.5"></app-rate>
+    <p *ngFor="let par of this.book?.book_description">&nbsp;&nbsp;{{par}}</p>
+  </div>
+
+</div>
+<hr>

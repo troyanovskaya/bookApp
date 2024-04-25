@@ -5,7 +5,8 @@ import { Series } from "./series";
 import { User } from "./user";
 
 export interface Book {
-  book_name: String;
+    _id: String,
+    book_name: String;
     book_authors: String[];
     book_edition_year: Number;
     book_description: String[];
@@ -17,6 +18,6 @@ export interface Book {
     book_comments: {user: User, comment: String[], date: Date}[];
     book_reviews: {user: User, review: String[], date: Date}[];
     book_img: String;
-    book_series: Series[];
+    book_series: String[];
     book_series_numbers: Number[]
 }

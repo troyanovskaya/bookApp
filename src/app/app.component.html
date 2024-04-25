@@ -1,20 +1,10 @@
 <app-sign-in-form *ngIf="visibilityService.showSignForm" ></app-sign-in-form>
 <app-registration *ngIf="visibilityService.showRegistrationForm" ></app-registration>
+
 <div class="wrapper">
   <app-book-header></app-book-header>
-  <div class="slider">
-    <app-slider></app-slider>
-  </div>
-<app-filter-bar></app-filter-bar>
-
-<div class="book-row">
-  <ng-container *ngFor="let book of filterService.filteredBooks" >
-    <app-book [book]="book"></app-book>
-  </ng-container>
-  <div class="no-results" *ngIf="filterService.filteredBooks.length == 0">
-    No results found. Try again!
-  </div>
-</div>
+  <router-outlet></router-outlet>
+ 
 </div>
 <app-footer></app-footer>
 

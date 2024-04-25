@@ -69,6 +69,8 @@ books:Book[] = [];
   constructor(public http: HttpClient) { };
   getAllBooks(){
     return this.http.get<Book[]>('http://localhost:3000/books');
-
+  }
+  getBook(id:String){
+    return this.http.get<Book>(`http://localhost:3000/books/${id}`);
   }
 }
