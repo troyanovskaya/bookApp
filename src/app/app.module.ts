@@ -20,6 +20,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { BookPageComponent } from './components/book-page/book-page.component';
 import { UnderlineDirective } from './derectives/underline.directive';
 import { PointerDirective } from './derectives/pointer.directive';
+import { HeaderComponent } from './components/book-page/header/header.component';
+import { CommentsComponent } from './components/book-page/comments/comments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,9 @@ import { PointerDirective } from './derectives/pointer.directive';
     HomePageComponent,
     BookPageComponent,
     UnderlineDirective,
-    PointerDirective
+    PointerDirective,
+    HeaderComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

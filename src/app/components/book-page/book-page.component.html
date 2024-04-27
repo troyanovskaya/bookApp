@@ -1,28 +1,49 @@
+<app-header></app-header>
 <div class="container">
   <div class="img-container">
     <img [src]="book?.book_img" [alt]="book?.book_name">
+    <div class="button-container-0">
+      <div  class="button-container-1">
+      <!-- <img *ngIf="books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart.png" alt="1">
+      <img *ngIf="!books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart2.png" alt="2"> -->
+      <button (click)="dropdown()" pointerD class="btn1">{{currentState}}</button>
+      <button (click)="dropdown()" pointerD class="btn2"><div class="triangle"></div></button>
+      <div (mouseleave)="visible=false" class="dropdown" *ngIf="visible==true">
+        <div (click)="changeListItem(this.i)"
+        class="list-item" pointerD
+        *ngFor="let state of states; index as i">
+         <div *ngIf="currentState!==state">{{state}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
   <div class="description-container">
     <div routerLink="/books/{{this.book?._id}}">
-      Name:
-      <span>
+      <span class="name">
         {{this.book?.book_name}}
       </span>
     </div>
     <div>
-      Author: <span underlineD pointerD
-                *ngFor="let author of this.book?.book_authors">
-                {{author}}
-              </span>
+      <span underlineD pointerD
+          *ngFor="let author of this.book?.book_authors">
+          {{author}}
+      </span>
     </div>
     <div *ngIf="book?.book_series?.length!== 0">
       Series:
       <span pointerD underlineD *ngFor="let s of book?.book_series">{{s}}</span>
     </div>
-    <div>Year: {{this.book?.book_edition_year}}</div>
+    <div> <span> Year: {{this.book?.book_edition_year}}</span></div>
     <app-rate [stars]="3.5"></app-rate>
     <p *ngFor="let par of this.book?.book_description">&nbsp;&nbsp;{{par}}</p>
   </div>
 
 </div>
 <hr>
+<div class="comments-container">
+
+  <textarea class="textarea" placeholder="Write your comment..." name="user-comment"
+    cols="50" rows="5"></textarea>
+  <app-comments *ngFor="let comm of comments" [comment]="comm"></app-comments>
+</div>

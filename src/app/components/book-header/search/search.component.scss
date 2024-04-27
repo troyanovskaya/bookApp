@@ -26,3 +26,11 @@
   padding: 0px 2px;
   margin-left: -10px
 }
+input[type=text] {
+  width: 110px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 160px;
+}
