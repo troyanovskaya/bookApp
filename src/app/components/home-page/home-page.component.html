@@ -2,12 +2,14 @@
   <app-slider></app-slider>
 </div>
 <app-filter-bar></app-filter-bar>
-
 <div class="book-row">
-<ng-container *ngFor="let book of filterService.filteredBooks" >
-  <app-book [book]="book"></app-book>
+<ng-container *ngFor="let book of filterService.filteredBooks; let i = index" >
+  <app-book *ngIf="i < bookShown" [book]="book"></app-book>
 </ng-container>
 <div class="no-results" *ngIf="filterService.filteredBooks.length == 0">
   No results found. Try again!
 </div>
+</div>
+<div *ngIf="bookShown < filterService.filteredBooks.length" class="add-books">
+  <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>
 </div>

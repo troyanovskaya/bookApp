@@ -9,11 +9,16 @@ import { VisibilityService } from 'src/app/services/visibility.service';
 })
 export class HomePageComponent implements OnInit {
   searchVal = '';
+  bookShown: number = 10;
+  showMoreBooks(){
+    this.bookShown = this.bookShown + 10;
+  }
   constructor(public filterService: FilterService){}
   ngOnInit(): void {
     this.filterService.loadFilterService();
     this.filterService.searchVal.subscribe(data => {
-      this.searchVal = data
+      this.searchVal = data;
+      this.bookShown = 10;
     });
 
     // this.booksService.getAllBooks().subscribe( data =>{

@@ -18,10 +18,11 @@ import { FilterBarComponent } from './components/home-page/filter-bar/filter-bar
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { BookPageComponent } from './components/book-page/book-page.component';
-import { UnderlineDirective } from './derectives/underline.directive';
-import { PointerDirective } from './derectives/pointer.directive';
+import { UnderlineDirective } from './directives/underline.directive';
+import { PointerDirective } from './directives/pointer.directive';
 import { HeaderComponent } from './components/book-page/header/header.component';
 import { CommentsComponent } from './components/book-page/comments/comments.component';
+import { OpacityDDirective } from './directives/opacity-d.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { CommentsComponent } from './components/book-page/comments/comments.comp
     UnderlineDirective,
     PointerDirective,
     HeaderComponent,
-    CommentsComponent
+    CommentsComponent,
+    OpacityDDirective
   ],
   imports: [
     BrowserModule,
