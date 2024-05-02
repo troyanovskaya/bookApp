@@ -1,11 +1,23 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { VisibilityService } from './services/visibility.service';
+import { LogInService } from './services/log-in.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  constructor(public visibilityService: VisibilityService){}
+export class AppComponent implements OnInit {
+  constructor(public visibilityService: VisibilityService,
+    public logInService: LogInService, private router: Router){}
+  ngOnInit(): void {
+    this.logInService.checkLoggedInUser();
+    this.router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0)
+  });
+  }
 }

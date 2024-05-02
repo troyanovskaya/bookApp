@@ -23,6 +23,8 @@ import { PointerDirective } from './directives/pointer.directive';
 import { HeaderComponent } from './components/book-page/header/header.component';
 import { CommentsComponent } from './components/book-page/comments/comments.component';
 import { OpacityDDirective } from './directives/opacity-d.directive';
+import { BtnReadComponent } from './components/btn-read/btn-read.component';
+import { DropdownComponent } from './components/book-header/profile/dropdown/dropdown.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,9 @@ import { OpacityDDirective } from './directives/opacity-d.directive';
     PointerDirective,
     HeaderComponent,
     CommentsComponent,
-    OpacityDDirective
+    OpacityDDirective,
+    BtnReadComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

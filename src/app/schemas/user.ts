@@ -12,6 +12,7 @@ export  interface User{
   user_books_saved: Book[];
   user_books_read: Book[];
   user_books_dropped: Book[];
+  user_books_favourite: Book[];
   user_rates: {book: Book, rate: number}[];
   user_saved_quotes: {book:Book, quote: String[]};
   user_comments: {book: Book, comment: String[], date: Date};

@@ -1,6 +1,6 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="logInService.user">
   <div class="container">
-    <div pointerD>Home</div>
+    <div pointerD routerLink="/">Home</div>
     <div pointerD>Library</div>
     <div pointerD>For me</div>
     <div pointerD>Profile</div>

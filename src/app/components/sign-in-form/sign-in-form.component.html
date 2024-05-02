@@ -2,14 +2,16 @@
 <div class="window">
   <div class="text-1">Sign in</div>
   <div class="input-container">
-    <input placeholder="email" type="text">
-    <input placeholder="password" type="text">
+    <input placeholder="email" type="text" [(ngModel)] = "email">
+    <input placeholder="password" [(ngModel)] = "password" type="text">
   </div>
   <div class="text-2">Don't have an account?</div>
   <div class="text-3"
   (click)="openRegistrationWindow()">Register now</div>
   <div class="button-container">
-    <button class="btn-3" (click)="visibilityService.showSignForm=false">Sign in</button>
+    <button class="btn-3" (click)="onSignInClick()">
+      Sign in
+    </button>
   </div>
   <div class="cross-container" (click)="visibilityService.showSignForm=false">
     <img src="assets/cross.png" alt="cross">

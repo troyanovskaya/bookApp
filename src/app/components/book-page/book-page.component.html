@@ -2,21 +2,7 @@
 <div class="container">
   <div class="img-container">
     <img [src]="book?.book_img" [alt]="book?.book_name">
-    <div class="button-container-0">
-      <div  class="button-container-1">
-      <!-- <img *ngIf="books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart.png" alt="1">
-      <img *ngIf="!books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart2.png" alt="2"> -->
-      <button (click)="dropdown()" pointerD class="btn1">{{currentState}}</button>
-      <button (click)="dropdown()" pointerD class="btn2"><div class="triangle"></div></button>
-      <div (mouseleave)="visible=false" class="dropdown" *ngIf="visible==true">
-        <div (click)="changeListItem(this.i)"
-        class="list-item" pointerD
-        *ngFor="let state of states; index as i">
-         <div *ngIf="currentState!==state">{{state}}</div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <app-btn-read></app-btn-read>
   </div>
   <div class="description-container">
     <div routerLink="/books/{{this.book?._id}}">

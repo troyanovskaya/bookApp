@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogInService } from 'src/app/services/log-in.service';
 
 @Component({
   selector: 'app-navigation',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
+  constructor(public logInService: LogInService){
+
+  }
 
 }

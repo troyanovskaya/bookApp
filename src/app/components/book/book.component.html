@@ -2,6 +2,7 @@
   <div class="main">
     <div class="img-container">
       <img class="book-img" src="{{this.book?.book_img}}" alt="{{this.book?.book_name}}">
+      <app-btn-read></app-btn-read>
     </div>
     <div class="description">
       <div routerLink="/books/{{this.book?._id}}">
@@ -23,23 +24,15 @@
       <div>Year: {{this.book?.book_edition_year}}</div>
       <app-rate [stars]="3.5"></app-rate>
       <p *ngFor="let par of this.book?.book_description">&nbsp;&nbsp;{{par}}</p>
-      <div class="button-container-0">
-        <div  class="button-container-1">
-          <!-- <img *ngIf="books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart.png" alt="1">
-          <img *ngIf="!books[0].saved" (click)="books[0].saved=!books[0].saved" class="saved" src="assets/heart2.png" alt="2"> -->
-          <button (click)="dropdown()" pointerD class="btn1">{{currentState}}</button>
-          <button (click)="dropdown()" pointerD class="btn2"><div class="triangle"></div></button>
-          <div (mouseleave)="visible=false" class="dropdown" *ngIf="visible==true">
-            <div (click)="changeListItem(this.i)"
-            class="list-item" pointerD
-            *ngFor="let state of states; index as i">
-             <div *ngIf="currentState!==state">{{state}}</div>
-            </div>
-          </div>
-        </div>
-        <button pointerD class="btn-3">Learn more</button>
+      <div class="btn-container">
+        <button pointerD class="btn-3" routerLink="/books/{{this.book?._id}}">
+          Learn more
+        </button>
       </div>
-    </div>
+
+
+
+
   </div>
 
 

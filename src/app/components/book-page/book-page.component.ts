@@ -13,7 +13,8 @@ export class BookPageComponent implements OnInit {
   book?: Book;
   comments? = [{'_id': '1c', 'comment_book': '1b', 'comment_user': '1u', 'comment_user_avatar': 'assets/avatars/lotus.png', 'comment_user_login': 'user1', 'comment_text': 'drtyuvczxcvjc zxyhwedsrghcx st jhtg',
   'comment_date': '16/11/2023'}]
-  constructor( public booksService: BooksService, private route: ActivatedRoute){}
+  constructor( public booksService: BooksService,
+    private route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.route.params.subscribe( params => this.id = params['id']);
