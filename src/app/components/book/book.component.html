@@ -2,7 +2,7 @@
   <div class="main">
     <div class="img-container">
       <img class="book-img" src="{{this.book?.book_img}}" alt="{{this.book?.book_name}}">
-      <app-btn-read></app-btn-read>
+      <app-btn-read [book]="book"></app-btn-read>
     </div>
     <div class="description">
       <div routerLink="/books/{{this.book?._id}}">

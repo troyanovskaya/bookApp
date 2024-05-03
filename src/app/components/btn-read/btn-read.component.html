@@ -1,7 +1,7 @@
 
-  <div pointerD opacityD *ngIf="logInService.user"
+  <div pointerD *ngIf="logInService.user"
     (mouseleave)="visible=false" class="button-container-1">
-    <button (click)="dropdown()" pointerD class="btn1">
+    <button opacityD (click)="dropdown()" pointerD class="btn1">
       {{currentState}} <span class="triangle"></span></button>
     <div  class="dropdown" *ngIf="visible==true">
       <div (click)="changeListItem(this.i)"

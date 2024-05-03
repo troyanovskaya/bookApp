@@ -2,6 +2,8 @@ import { Injectable} from '@angular/core';
 import { Book } from '../schemas/book';
 import { FilterService } from './filter.service';
 import {HttpClient} from '@angular/common/http'
+import { LogInService } from './log-in.service';
+import { User } from '../schemas/user';
 
 
 @Injectable({
@@ -66,11 +68,14 @@ books:Book[] = [];
     // }
 
   }
-  constructor(public http: HttpClient) { };
+  constructor(public http: HttpClient, public logInService: LogInService) { };
   getAllBooks(){
     return this.http.get<Book[]>('http://localhost:3000/books');
   }
   getBook(id:String){
     return this.http.get<Book>(`http://localhost:3000/books/${id}`);
+  }
+  addBookToUserList(update: any){
+    return this.http.patch<User>(`http://localhost:3000/users/${this.logInService.user?._id}`, update);
   }
 }

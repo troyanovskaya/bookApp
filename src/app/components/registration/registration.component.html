@@ -2,13 +2,13 @@
 <div class="window">
   <div class="text-1">Registration</div>
   <div class="input-container">
-    <input placeholder="email" type="text">
-    <input placeholder="login" type="text">
-    <input placeholder="password" type="text">
-    <input placeholder="password" type="text">
+    <input placeholder="email" type="text" [(ngModel)]="email">
+    <input placeholder="login" type="text" [(ngModel)]="login">
+    <input placeholder="password" type="text" [(ngModel)]="password1">
+    <input placeholder="password" type="text" [(ngModel)]="password2">
   </div>
   <div class="button-container">
-    <button class="btn-3" (click)="visibilityService.showRegistrationForm=false">Register</button>
+    <button class="btn-3" (click)="onRegistrationSend()">Register</button>
   </div>
 
 

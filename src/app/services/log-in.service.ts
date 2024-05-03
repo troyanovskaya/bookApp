@@ -22,7 +22,7 @@ export class LogInService {
     (`http://localhost:3000/users/?password=${password}&email=${email}`,
      { observe: 'response' }).pipe(
       catchError(this.handleError)
-    );;
+    );
   }
   logOut(){
     localStorage.removeItem('userObject');
@@ -36,5 +36,11 @@ export class LogInService {
 
     console.log('retrievedObject: ', retrievedObject ? JSON.parse(retrievedObject) : 'none');
   }
+  registerNewUser(password: String, login: String, email: String){
+    let user = {user_login: login, user_email: email, user_password: password};
+    return this.http.post<any>('http://localhost:3000/users', user).pipe(catchError(this.handleError));
+
+  }
   constructor(public http: HttpClient) { }
+
 }

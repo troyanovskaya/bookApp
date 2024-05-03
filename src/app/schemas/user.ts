@@ -4,15 +4,16 @@ export enum Role{
   'administrator'
 }
 export  interface User{
+  _id: String
   user_role: Role;
   user_login: String;
   user_password: String;
   user_email: String;
   user_img: String;
-  user_books_saved: Book[];
-  user_books_read: Book[];
-  user_books_dropped: Book[];
-  user_books_favourite: Book[];
+  user_books_saved: String[];
+  user_books_read: String[];
+  user_books_dropped: String[];
+  user_books_favourite: String[];
   user_rates: {book: Book, rate: number}[];
   user_saved_quotes: {book:Book, quote: String[]};
   user_comments: {book: Book, comment: String[], date: Date};

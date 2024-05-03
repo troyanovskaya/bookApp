@@ -1,8 +1,9 @@
+<button>!!!!!</button>
 <app-header></app-header>
 <div class="container">
   <div class="img-container">
     <img [src]="book?.book_img" [alt]="book?.book_name">
-    <app-btn-read></app-btn-read>
+    <app-btn-read [book]="book"></app-btn-read>
   </div>
   <div class="description-container">
     <div routerLink="/books/{{this.book?._id}}">
