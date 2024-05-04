@@ -37,5 +37,5 @@
   <ng-template #noCommentText>
     <div class="no-comment">Only authorised users can leave comments in this section. Sign in to continue!</div>
   </ng-template>
-  <app-comments *ngFor="let comm of comments" [comment]="comm"></app-comments>
+  <app-comments *ngFor="let com of book?.book_comments" [comment]="com"></app-comments>
 </div>
