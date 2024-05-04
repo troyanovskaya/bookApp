@@ -36,11 +36,27 @@ hr{
   justify-content: center;
   align-items: center;
 }
-.textarea{
-  margin-bottom: 30px;
-}
 div{
   margin: 10px;
   overflow-wrap: break-word
+}
+.no-comment{
+  font-style: italic;
+  color: grey;
+}
+button{
+  background-color: #182b5b;
+  color:white;
+  border: 0px;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100px;
+}
+.user-comment{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
 }
 

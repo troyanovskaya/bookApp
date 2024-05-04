@@ -75,7 +75,10 @@ books:Book[] = [];
   getBook(id:String){
     return this.http.get<Book>(`http://localhost:3000/books/${id}`);
   }
-  addBookToUserList(update: any){
-    return this.http.patch<User>(`http://localhost:3000/users/${this.logInService.user?._id}`, update);
+  patchBook(update: any, id: String){
+    return this.http.patch<Book>(`http://localhost:3000/books/${id}`, update)
+  }
+  patchBookArray(newElement: any, property: String, id: String){
+    return this.http.patch<Book>(`http://localhost:3000/books/${id}/${property}`, newElement);
   }
 }

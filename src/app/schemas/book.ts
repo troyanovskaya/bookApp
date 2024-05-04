@@ -15,9 +15,9 @@ export interface Book {
     book_rates: {user: User, rate: Number, date: Date}[];
     book_average_rate: Number;
     book_quotes: String[][];
-    book_comments: {user: User, comment: String[], date: Date}[];
+    book_comments: {user_id: String, user_img: String, user_login: String, comment: String[], date: String}[];
     book_reviews: {user: User, review: String[], date: Date}[];
-    book_img: String;
+    book_img: String[];
     book_series: String[];
     book_series_numbers: Number[]
 }

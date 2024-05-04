@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnInit } fr
 import { Book } from 'src/app/schemas/book';
 import { BooksService } from 'src/app/services/books.service';
 import { LogInService } from 'src/app/services/log-in.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-btn-read',
@@ -42,7 +43,7 @@ export class BtnReadComponent implements DoCheck{
 
       }
       update = user;
-      this.booksService.addBookToUserList(update).subscribe( data =>{
+      this.userService.patchUser(update, user._id).subscribe( data =>{
         console.log(data)
       });
       this.logInService.user = user;
@@ -50,7 +51,8 @@ export class BtnReadComponent implements DoCheck{
     }
     this.dropdown();
   }
-  constructor(public logInService: LogInService, public booksService: BooksService){}
+  constructor(public logInService: LogInService, public booksService: BooksService,
+    public userService: UserService){}
   ngDoCheck(){
     let user = this.logInService.user;
     let bookId = this.book?._id;
