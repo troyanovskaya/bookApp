@@ -1,0 +1,12 @@
+<div class="reviews-container">
+  <div class="user-review" *ngIf="logInService.user; else noReviewText">
+    <textarea class="textarea" placeholder="Write your own review..." name="user-review"
+    cols="50" rows="10" [(ngModel)]="rew"></textarea>
+    <button opacityD pointerD (click)="postReview()">Submit</button>
+  </div>
+
+  <ng-template #noReviewText>
+    <div class="no-review">Only authorised users can leave reviews in this section. Sign in to continue!</div>
+  </ng-template>
+  <app-review *ngFor="let r of reviews" [review]="r"></app-review>
+</div>

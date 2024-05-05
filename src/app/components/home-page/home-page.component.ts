@@ -20,6 +20,7 @@ export class HomePageComponent implements OnInit {
       this.searchVal = data;
       this.bookShown = 10;
     });
+    this.filterService.filterBooksBy();
 
     // this.booksService.getAllBooks().subscribe( data =>{
     //   for (let i = 0; i<data.length; i++){

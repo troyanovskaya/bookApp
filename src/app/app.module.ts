@@ -25,6 +25,8 @@ import { CommentsComponent } from './components/book-page/comments/comments.comp
 import { OpacityDDirective } from './directives/opacity-d.directive';
 import { BtnReadComponent } from './components/btn-read/btn-read.component';
 import { DropdownComponent } from './components/book-header/profile/dropdown/dropdown.component';
+import { BookReviewPageComponent } from './components/book-review-page/book-review-page.component';
+import { ReviewComponent } from './components/book-review-page/review/review.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,9 @@ import { DropdownComponent } from './components/book-header/profile/dropdown/dro
     CommentsComponent,
     OpacityDDirective,
     BtnReadComponent,
-    DropdownComponent
+    DropdownComponent,
+    BookReviewPageComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

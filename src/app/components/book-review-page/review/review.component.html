@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="img-container">
+    <img class="img" [src]="review?.review_user_img" [alt]="review?.review_user_img">
+    <p>{{review?.review_user_login}}</p>
+    <p class="date">{{review?.review_date}}</p>
+  </div>
+  <div class="review-container">
+    <ng-container *ngFor="let c of review?.review_text">
+    <div>&nbsp;&nbsp;{{c}}</div></ng-container>
+
+  </div>
+</div>

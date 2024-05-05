@@ -1,7 +1,8 @@
 <div class="wrapper">
   <div class="main">
     <div class="img-container">
-      <img class="book-img" src="{{this.book?.book_img}}" alt="{{this.book?.book_name}}">
+      <img routerLink="/books/{{this.book?._id}}" pointerD class="book-img"
+        src="{{this.book?.book_img}}" alt="{{this.book?.book_name}}">
       <app-btn-read [book]="book"></app-btn-read>
     </div>
     <div class="description">
@@ -25,7 +26,7 @@
       <app-rate [stars]="3.5"></app-rate>
       <p *ngFor="let par of this.book?.book_description">&nbsp;&nbsp;{{par}}</p>
       <div class="btn-container">
-        <button pointerD class="btn-3" routerLink="/books/{{this.book?._id}}">
+        <button pointerD opacityD class="btn-3" routerLink="/books/{{this.book?._id}}">
           Learn more
         </button>
       </div>

@@ -7,6 +7,7 @@ import { CommentService } from 'src/app/services/comment.service';
 import { LogInService } from 'src/app/services/log-in.service';
 import { UserService } from 'src/app/services/user.service';
 
+
 @Component({
   selector: 'app-book-page',
   templateUrl: './book-page.component.html',
@@ -22,13 +23,15 @@ export class BookPageComponent implements OnInit {
      public userService: UserService, public commentService: CommentService){}
 
   ngOnInit(): void {
-    this.route.params.subscribe( params => this.id = params['id']);
-    this.booksService.getBook(this.id).subscribe( book => {
-      this.book = book;
+    this.route.params.subscribe( params => {
+      this.id = params['id']
+      this.booksService.getBook(this.id).subscribe( book => {
+        this.book = book;
+      });
+      this.commentService.getCommentByBookId(this.id).subscribe( comments => {
+        this.comments = comments
+      });
     });
-    this.commentService.getCommentByBookId(this.id).subscribe( comments => {
-      this.comments = comments
-    })
   }
   postComment(){
     let book = this.book;

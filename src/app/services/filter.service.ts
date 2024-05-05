@@ -20,11 +20,12 @@ reloadSearchChosen(){
   this.searchChosen.byGenres = 0;
 }
 loadFilterService(){
-  this.bookService.getAllBooks().subscribe( data => {
-    console.log('!!!!')
-    this.books = data;
-    this.filteredBooks = data
-  });
+  if(this.books.length == 0){
+    this.bookService.getAllBooks().subscribe( data => {
+      this.books = data;
+      this.filteredBooks = data
+    });
+  }
 }
 ngOnInit(){
 // this.bookService.getAllBooks().subscribe( data => {
@@ -35,74 +36,78 @@ ngOnInit(){
 // console.log('!!!!')
 }
 filterBooksBy(bykey:string = 'all'){
-  let val = this.val;
-  this.reloadSearchChosen()
-  let filtered = [];
-  if(val !== ''){
-    for (let book of this.books){
-      let name = book.book_name.toLowerCase().includes(val) ?  true : false;
-      let authors = book.book_authors.reduce((acc, current) => acc || current.toLowerCase().includes(val), false)
-      let descArr = book.book_description.filter( el => el.toLowerCase().includes(val));
-      let description = descArr.length > 0 ? true : false;
-      let keywordsArr = book.book_keywords.filter( el => el.toLowerCase().includes(val));
-      let keywords = keywordsArr.length > 0 ? true : false;
-      let genreArr = book.book_genres.filter( el => el.toLowerCase().includes(val));
-      let genres =  genreArr.length > 0 ? true : false;
-      if(name){
-        this.searchChosen.byName++;
-      }
-      if(authors){
-        this.searchChosen.byAuthor++;
-      }
-      if(description){
-        this.searchChosen.byDescription++;
-      }
-      if(keywords){
-        this.searchChosen.byKeyWords++;
-      }
-      if(genres){
-        this.searchChosen.byGenres++;
-      }
-      if(name || authors || description || keywords || genres){
-        this.searchChosen.all++;
-      }
-      switch (bykey){
-        case 'name':
-          if(name){
-            filtered.push(book);
-          }
-          break;
-        case 'authors':
-          if(authors){
-            filtered.push(book);
-          }
-          break;
-        case 'description':
-          if(description){
-            filtered.push(book);
-          }
-          break;
-        case 'keywords':
-          if(keywords){
-            filtered.push(book);
-          }
-          break;
-        case 'genres':
-          if(genres){
-            filtered.push(book);
-          }
-          break;
-        default:
-          if(name || description || authors || keywords || genres){
-            filtered.push(book);
-          }
-      }
+  if(this.val){
+    let val = this.val;
+    this.reloadSearchChosen()
+    let filtered = [];
+    if(val !== ''){
+      for (let book of this.books){
+        let name = book.book_name.toLowerCase().includes(val) ?  true : false;
+        let authors = book.book_authors.reduce((acc, current) => acc || current.toLowerCase().includes(val), false)
+        let descArr = book.book_description.filter( el => el.toLowerCase().includes(val));
+        let description = descArr.length > 0 ? true : false;
+        let keywordsArr = book.book_keywords.filter( el => el.toLowerCase().includes(val));
+        let keywords = keywordsArr.length > 0 ? true : false;
+        let genreArr = book.book_genres.filter( el => el.toLowerCase().includes(val));
+        let genres =  genreArr.length > 0 ? true : false;
+        if(name){
+          this.searchChosen.byName++;
+        }
+        if(authors){
+          this.searchChosen.byAuthor++;
+        }
+        if(description){
+          this.searchChosen.byDescription++;
+        }
+        if(keywords){
+          this.searchChosen.byKeyWords++;
+        }
+        if(genres){
+          this.searchChosen.byGenres++;
+        }
+        if(name || authors || description || keywords || genres){
+          this.searchChosen.all++;
+        }
+        switch (bykey){
+          case 'name':
+            if(name){
+              filtered.push(book);
+            }
+            break;
+          case 'authors':
+            if(authors){
+              filtered.push(book);
+            }
+            break;
+          case 'description':
+            if(description){
+              filtered.push(book);
+            }
+            break;
+          case 'keywords':
+            if(keywords){
+              filtered.push(book);
+            }
+            break;
+          case 'genres':
+            if(genres){
+              filtered.push(book);
+            }
+            break;
+          default:
+            if(name || description || authors || keywords || genres){
+              filtered.push(book);
+            }
+        }
 
+
+      }
+      console.log(filtered.length);
+      this.filteredBooks = filtered;
 
     }
-    this.filteredBooks = filtered;
-
   }
+
 
 }
 

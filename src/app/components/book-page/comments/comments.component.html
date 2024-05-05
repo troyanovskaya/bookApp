@@ -2,6 +2,7 @@
   <div class="img-container">
     <img class="img" [src]="comment?.comment_user_img" [alt]="comment?.comment_user_img">
     <p>{{comment?.comment_user_login}}</p>
+    <p class="date">{{comment?.comment_date}}</p>
   </div>
   <div class="comment-container">
     <ng-container *ngFor="let c of comment?.comment_text">

@@ -1,0 +1,33 @@
+.reviews-container{
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div{
+  margin: 10px;
+  overflow-wrap: break-word
+}
+.no-review{
+  font-style: italic;
+  color: grey;
+}
+button{
+  background-color: #182b5b;
+  color:white;
+  border: 0px;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100px;
+}
+.user-review{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+textarea{
+  padding: 10px
+}
