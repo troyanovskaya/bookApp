@@ -1,10 +1,10 @@
 <div class="container">
   <div class="img-container">
-    <img class="img" [src]="comment.user_img" [alt]="comment.user_img">
-    <p>{{comment.user_login}}</p>
+    <img class="img" [src]="comment?.comment_user_img" [alt]="comment?.comment_user_img">
+    <p>{{comment?.comment_user_login}}</p>
   </div>
   <div class="comment-container">
-    <ng-container *ngFor="let c of comment.comment">
+    <ng-container *ngFor="let c of comment?.comment_text">
     <div>&nbsp;&nbsp;{{c}}</div></ng-container>
 
   </div>

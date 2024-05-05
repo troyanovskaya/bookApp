@@ -16,7 +16,6 @@ export  interface User{
   user_books_favourite: String[];
   user_rates: {book: Book, rate: number}[];
   user_saved_quotes: {book:Book, quote: String[]};
-  user_comments: {book_id: String, book_name: String, book_authors: String[], book_img: String[], comment: String[], date: String}[];
   user_reviews: {book: Book, review: String[], date: Date};
   user_books_recommendations: Book[];
 }

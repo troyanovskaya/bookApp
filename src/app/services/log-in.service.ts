@@ -38,8 +38,7 @@ export class LogInService {
   }
   registerNewUser(password: String, login: String, email: String){
     let user = {user_login: login, user_email: email, user_password: password};
-    return this.http.post<any>('http://localhost:3000/users', user).pipe(catchError(this.handleError));
-
+    return this.http.post<User>('http://localhost:3000/users', user).pipe(catchError(this.handleError));
   }
   constructor(public http: HttpClient) { }
 

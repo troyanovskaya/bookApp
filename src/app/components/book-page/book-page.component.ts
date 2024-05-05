@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Comm } from 'src/app/schemas/comment';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/schemas/book';
 import { BooksService } from 'src/app/services/books.service';
+import { CommentService } from 'src/app/services/comment.service';
 import { LogInService } from 'src/app/services/log-in.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,15 +16,19 @@ export class BookPageComponent implements OnInit {
   id: String = '';
   book?: Book;
   comm: String = '';
+  comments?: Comm[];
   constructor( public booksService: BooksService,
      private route: ActivatedRoute, public logInService: LogInService,
-     public userService: UserService){}
+     public userService: UserService, public commentService: CommentService){}
 
   ngOnInit(): void {
     this.route.params.subscribe( params => this.id = params['id']);
     this.booksService.getBook(this.id).subscribe( book => {
       this.book = book;
     });
+    this.commentService.getCommentByBookId(this.id).subscribe( comments => {
+      this.comments = comments
+    })
   }
   postComment(){
     let book = this.book;
@@ -30,19 +36,16 @@ export class BookPageComponent implements OnInit {
     let date = new Date().toLocaleDateString('en-GB');
     let arrayOfRows = this.comm.split("\n");
     if(user && book){
-      let book_comment = {user_id: user._id, user_login: user.user_login, user_img: user.user_img, comment: arrayOfRows, date: date.toString()};
-      let user_comment = {book_id: book._id,  book_name: book.book_name, book_authors: book.book_authors, book_img: book.book_img, comment: arrayOfRows, date: date.toString()};
-      console.log(user_comment)
-      user.user_comments.push(user_comment);
-      localStorage.setItem('userObject', JSON.stringify(user))
-      this.userService.patchUser(user, user._id).subscribe( data => {
-        console.log(data);
+      let comm = {comment_book: book, comment_book_img: book.book_img, comment_book_name: book.book_name,
+        comment_book_authors: book.book_authors, comment_user: user, comment_user_img: user.user_img,
+        comment_user_login: user.user_login, comment_text: arrayOfRows, comment_date: date.toString()
+      }
+      this.commentService.postComment(comm).subscribe( data => {
+        this.comm = '';
+        this.commentService.getCommentByBookId(this.id).subscribe( comments => {
+          this.comments = comments
+        })
       })
-      book.book_comments.push(book_comment);
-      this.book = book;
-      this.booksService.patchBookArray(book_comment, 'book_comments', book._id).subscribe( data =>
-        console.log(data)
-      );
     }
 
   }
