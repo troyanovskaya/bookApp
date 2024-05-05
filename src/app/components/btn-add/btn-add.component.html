@@ -1,0 +1,4 @@
+<button (click)="showHidden()">
+  <span *ngIf="!currentState">Add new +</span>
+  <span *ngIf="currentState">Close</span>
+</button>

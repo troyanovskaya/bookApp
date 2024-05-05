@@ -28,14 +28,15 @@
 </div>
 <hr>
 <div class="comments-container">
-  <div class="user-comment" *ngIf="logInService.user; else noCommentText">
+  <div class="user-comment" *ngIf="logInService.user && showCommentField">
     <textarea class="textarea" placeholder="Write your comment..." name="user-comment"
     cols="50" rows="5" [(ngModel)]="comm"></textarea>
     <button opacityD pointerD (click)="postComment()">Submit</button>
   </div>
+  <app-btn-add *ngIf="logInService.user" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
 
-  <ng-template #noCommentText>
+  <div *ngIf="!logInService.user">
     <div class="no-comment">Only authorised users can leave comments in this section. Sign in to continue!</div>
-  </ng-template>
+  </div>
   <app-comments *ngFor="let com of comments" [comment]="com"></app-comments>
 </div>

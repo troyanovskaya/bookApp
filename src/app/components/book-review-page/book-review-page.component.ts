@@ -16,6 +16,7 @@ export class BookReviewPageComponent implements OnInit{
   book?: Book;
   id: String = '';
   reviews: Review[] = [];
+  showCommentField:boolean = false;
   constructor(public logInService: LogInService, public reviewService: ReviewService,
     private route: ActivatedRoute, public booksService: BooksService
   ){}
@@ -31,11 +32,12 @@ export class BookReviewPageComponent implements OnInit{
       }
       this.reviewService.postReview(review).subscribe( data => {
         this.rew = '';
-        this.reviewService.getReviewByBookId(this.id).subscribe( reviews => {
-          this.reviews = reviews
-        })
+        this.reviews.push(data);
       })
     }
+  }
+  changeVisibility(event: boolean){
+    this.showCommentField = event;
   }
   ngOnInit(): void {
     this.route.params.subscribe( params => {

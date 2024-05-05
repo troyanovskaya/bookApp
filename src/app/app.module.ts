@@ -27,6 +27,9 @@ import { BtnReadComponent } from './components/btn-read/btn-read.component';
 import { DropdownComponent } from './components/book-header/profile/dropdown/dropdown.component';
 import { BookReviewPageComponent } from './components/book-review-page/book-review-page.component';
 import { ReviewComponent } from './components/book-review-page/review/review.component';
+import { BookQuotePageComponent } from './components/book-quote-page/book-quote-page.component';
+import { QuoteComponent } from './components/book-quote-page/quote/quote.component';
+import { BtnAddComponent } from './components/btn-add/btn-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,10 @@ import { ReviewComponent } from './components/book-review-page/review/review.com
     BtnReadComponent,
     DropdownComponent,
     BookReviewPageComponent,
-    ReviewComponent
+    ReviewComponent,
+    BookQuotePageComponent,
+    QuoteComponent,
+    BtnAddComponent
   ],
   imports: [
     BrowserModule,

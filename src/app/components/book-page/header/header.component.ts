@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Quote } from 'src/app/schemas/quote';
 
 import { Review } from 'src/app/schemas/review';
+import { QuoteService } from 'src/app/services/quote.service';
 import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
@@ -12,7 +14,10 @@ import { ReviewService } from 'src/app/services/review.service';
 export class HeaderComponent implements OnInit{
   id: String = '';
   reviews: Review[] = [];
-  constructor(private route: ActivatedRoute, public reviewService: ReviewService){
+  quotes: Quote[] = [];
+  constructor(private route: ActivatedRoute, public reviewService: ReviewService,
+    public quoteService: QuoteService
+  ){
 
   }
   ngOnInit(): void {
@@ -20,6 +25,9 @@ export class HeaderComponent implements OnInit{
       this.id = params['id'];
       this.reviewService.getReviewByBookId(this.id).subscribe( reviews => {
         this.reviews = reviews
+      });
+      this.quoteService.getQuoteByBookId(this.id).subscribe( quotes => {
+        this.quotes = quotes
       });
     })
   }

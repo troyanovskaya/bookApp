@@ -1,0 +1,25 @@
+<div  class="quotes-container">
+  <div class="label">Quotes from
+  <span underlineD pointerD routerLink="/books/{{this.book?._id}}">
+    {{book?.book_name}}
+  </span> ,
+   by {{book?.book_authors?.join(', ')}}</div>
+  <div class="user-quote" *ngIf="logInService.user && showCommentField">
+    <textarea class="textarea" placeholder="Write the quote..." name="user-quote"
+    cols="50" rows="10" [(ngModel)]="q"></textarea>
+    <input type="text" [(ngModel)]="q_by">
+    <button opacityD pointerD (click)="postQuote()">Submit</button>
+
+  </div>
+  <app-btn-add (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
+
+  <div *ngIf="!logInService.user">
+    <div class="no-quote">Only authorised users can leave quotes in this section. Sign in to continue!</div>
+  </div>
+  <hr>
+  <div class="quotes">
+    <app-quote *ngFor="let q of quotes" [quote]="q"></app-quote>
+  </div>
+
+  <hr>
+</div>

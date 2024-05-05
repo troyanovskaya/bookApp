@@ -1,35 +1,4 @@
-.container{
-  max-width: 1000px;
-  margin: auto auto;
-}
-.img-container{
-  padding:15px;
-  float: left;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
-}
-img{
-  width: 220px;
-  height: 320px;
-}
-.name{
-  font-size: 1.2em;
-}
-.description-container{
-  padding:30px;
-}
-*{
-  font-size: 18px;
-}
-hr{
-  color: grey;
-  margin: auto;
-  width: 80%;
-}
-.comments-container{
+.quotes-container{
   margin: 30px;
   display: flex;
   flex-direction: column;
@@ -40,7 +9,7 @@ div{
   margin: 10px;
   overflow-wrap: break-word
 }
-.no-comment{
+.no-quote{
   font-style: italic;
   color: grey;
 }
@@ -53,7 +22,7 @@ button{
   border-radius: 10px;
   width: 100px;
 }
-.user-comment{
+.user-quote{
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -62,7 +31,26 @@ button{
 textarea{
   padding: 10px
 }
+input{
+  height:12px;
+  font-size: 0.7em;
+  font-style: italic;
+  padding: 2px;
+  font-weight: bold;
+}
+hr{
+  width: 80%;
+  color: gray
+}
+.quotes{
+  justify-content: flex-end;
+}
+.label{
+  width: 100%;
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-align: start;
+}
 app-btn-add{
   margin-bottom: 20px;
 }
-

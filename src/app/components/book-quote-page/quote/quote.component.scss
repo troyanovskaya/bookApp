@@ -1,0 +1,29 @@
+.quote-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin: 30px 50px;
+}
+
+.right .quote-text{
+  text-align: end;
+}
+.quote{
+  color: grey;
+  font-style: italic;
+  font-size: 1.2em;
+}
+.quote-character{
+  font-weight: bold;
+}
+.quote-date{
+  color: grey;
+  font-style: italic;
+}
+hr{
+  width: 80%;
+  color: gray
+}

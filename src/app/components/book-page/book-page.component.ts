@@ -17,7 +17,8 @@ export class BookPageComponent implements OnInit {
   id: String = '';
   book?: Book;
   comm: String = '';
-  comments?: Comm[];
+  comments: Comm[] = [];
+  showCommentField:boolean = false;
   constructor( public booksService: BooksService,
      private route: ActivatedRoute, public logInService: LogInService,
      public userService: UserService, public commentService: CommentService){}
@@ -33,6 +34,9 @@ export class BookPageComponent implements OnInit {
       });
     });
   }
+  changeVisibility(event: boolean){
+    this.showCommentField = event;
+  }
   postComment(){
     let book = this.book;
     let user = this.logInService.user;
@@ -45,10 +49,9 @@ export class BookPageComponent implements OnInit {
       }
       this.commentService.postComment(comm).subscribe( data => {
         this.comm = '';
-        this.commentService.getCommentByBookId(this.id).subscribe( comments => {
-          this.comments = comments
-        })
+        this.comments.push(data)
       })
+      this.showCommentField = false;
     }
 
   }
