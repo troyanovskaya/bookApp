@@ -1,5 +1,30 @@
 .container{
   display:flex;
   flex-wrap: nowrap;
-  margin-top: 0.4rem;
+}
+.filling{
+
+}
+.yellow{
+  background-color: yellow;
+  width: 30px;
+  height: 30px;
+}
+.white{
+  background-color: white;
+  width: 30px;
+  height: 30px;
+}
+p{
+  margin-top: 0px;
+  position:absolute
+}
+.img{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index:1;
+}
+.wrapper{
+  position: relative;
 }
