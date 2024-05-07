@@ -1,11 +1,8 @@
 <div class="container">
 
   <div class="wrapper" *ngFor="let n of [1, 2, 3, 4, 5]">
-    <img class="img" src="assets/star!.png" alt="star">
+    <img class="img" src="assets/star!.png" alt="star" (click)="sendRate(n)">
     <p [ngClass]="{'yellow': this.rate-n==0 || this.rate-n>0, 'white': this.rate-n<0, 'partly': n-this.rate>0 && n-this.rate<1 }" #fill ></p>
     <div class="filling white"></div>
     </div>
-  <!-- ,  -->
-  <!-- <img *ngFor="let current of [1,2,3,4,5]"
-  [src]="getStarImage(current)" [ngStyle]="styles" alt=""> -->
 </div>

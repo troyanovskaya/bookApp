@@ -23,7 +23,7 @@
         <span pointerD underlineD *ngFor="let s of book?.book_series">{{s}}</span>
       </div>
       <div>Year: {{this.book?.book_edition_year}}</div>
-      <app-rate [rate]="3.5"></app-rate>
+      <app-rate [rate]="book?.book_average_rate || 0" [book]="book"></app-rate>
       <p *ngFor="let par of this.book?.book_description">&nbsp;&nbsp;{{par}}</p>
       <div class="btn-container">
         <button pointerD opacityD class="btn-3" routerLink="/books/{{this.book?._id}}">
