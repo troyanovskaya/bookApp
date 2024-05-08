@@ -32,6 +32,7 @@ import { QuoteComponent } from './components/book-quote-page/quote/quote.compone
 import { BtnAddComponent } from './components/reusable/btn-add/btn-add.component';
 import { BookListsPageComponent } from './components/book-lists-page/book-lists-page.component';
 import { ListHeaderComponent } from './components/book-lists-page/list-header/list-header.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { ListHeaderComponent } from './components/book-lists-page/list-header/li
     QuoteComponent,
     BtnAddComponent,
     BookListsPageComponent,
-    ListHeaderComponent
+    ListHeaderComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

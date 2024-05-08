@@ -1,0 +1,31 @@
+.container{
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+img{
+  width: 120px;
+  height: 100px;
+}
+.img-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #0b193c;
+  border-radius: 10px;
+  padding:10px;
+}
+.text-container{
+  margin:20px;
+}
+button{
+  background-color: #182b5b;
+  color:white;
+  border: 0px;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100px;
+}
