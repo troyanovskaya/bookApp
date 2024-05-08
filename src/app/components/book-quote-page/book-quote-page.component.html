@@ -16,10 +16,10 @@
   <div *ngIf="!logInService.user">
     <div class="no-quote">Only authorised users can leave quotes in this section. Sign in to continue!</div>
   </div>
-  <hr>
+  <hr *ngIf="quotes.length>0">
   <div class="quotes">
     <app-quote *ngFor="let q of quotes" [quote]="q"></app-quote>
   </div>
 
-  <hr>
+  <hr *ngIf="quotes.length>0">
 </div>

@@ -1,5 +1,5 @@
 <div *ngIf="!logInService.user; else userProfile" class="wrapper" (click)="visibilityService.showSignForm = true">
-    <button class="sign icon">Sign in</button>
+    <button (click)="dropdownFalse()" class="sign icon">Sign in</button>
     <img class="sign-img icon" src="assets/sign-in.png" alt="sign in">
 </div>
 <ng-template #userProfile >

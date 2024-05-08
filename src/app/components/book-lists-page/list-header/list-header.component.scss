@@ -1,0 +1,29 @@
+.container{
+  display:flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  gap:20px
+}
+.item{
+  width: 200px;
+  //background-color: #0b193c;
+  //color: white;
+  color: #0b193c;
+  padding: 5px;
+  //font-size: 0.9em;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #0b193c;
+}
+.chosenItem{
+  width: 200px;
+  background-color: #0b193c;
+  //color: white;
+  color: white;
+  padding: 5px;
+  //font-size: 0.9em;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid white;
+}

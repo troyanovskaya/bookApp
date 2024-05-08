@@ -1,0 +1,6 @@
+<div class="container">
+  <div [ngClass]="{'item': chosen!=list, 'chosenItem': chosen==list}"
+  underlineD pointerD (click)="changeChosen(list)"
+  *ngFor="let list of buttonList"> {{list}}
+  </div>
+</div>
