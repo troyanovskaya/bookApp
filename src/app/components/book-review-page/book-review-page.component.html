@@ -9,10 +9,13 @@
     cols="50" rows="10" [(ngModel)]="rew"></textarea>
     <button opacityD pointerD (click)="postReview()">Submit</button>
   </div>
-  <app-btn-add (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
+  <app-btn-add *ngIf="logInService.user" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
 
   <div *ngIf="!logInService.user">
     <div class="no-review">Only authorised users can leave reviews in this section. Sign in to continue!</div>
+  </div>
+  <div *ngIf="reviews.length==0">
+    <div class="no-review">No reviews here right now. Add some yourself!</div>
   </div>
   <app-review *ngFor="let r of reviews" [review]="r"></app-review>
 </div>

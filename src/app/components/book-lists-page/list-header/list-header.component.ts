@@ -14,7 +14,6 @@ export class ListHeaderComponent {
   changeChosen(list: string){
     if(this.chosen!=list){
       this.chosen=list;
-      console.log(list)
       this.listEmitter.emit(list);
     }
 

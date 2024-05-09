@@ -33,7 +33,7 @@
     cols="50" rows="5" [(ngModel)]="comm"></textarea>
     <button opacityD pointerD (click)="postComment()">Submit</button>
   </div>
-  <app-btn-add *ngIf="logInService.user" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
+  <app-btn-add  *ngIf="logInService.user" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
 
   <div *ngIf="!logInService.user">
     <div class="no-comment">Only authorised users can leave comments in this section. Sign in to continue!</div>

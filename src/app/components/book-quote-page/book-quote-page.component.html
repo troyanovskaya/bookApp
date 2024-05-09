@@ -11,10 +11,13 @@
     <button opacityD pointerD (click)="postQuote()">Submit</button>
 
   </div>
-  <app-btn-add (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
+  <app-btn-add *ngIf="logInService.user" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
 
   <div *ngIf="!logInService.user">
     <div class="no-quote">Only authorised users can leave quotes in this section. Sign in to continue!</div>
+  </div>
+  <div *ngIf="quotes.length==0">
+    <div class="no-quote">No quotes here right now. Add some yourself!</div>
   </div>
   <hr *ngIf="quotes.length>0">
   <div class="quotes">

@@ -12,5 +12,8 @@ export class RateService {
   getRateByBookId(id: String){
     return this.http.get<number>(`http://localhost:3000/rates/books/${id}`);
   }
+  getRateByUserId(id: String){
+    return this.http.get<Rate[]>(`http://localhost:3000/rates/users/${id}`);
+  }
   constructor(public http: HttpClient) { }
 }
