@@ -4,7 +4,12 @@ import { RateService } from './rate.service';
 import { Rate } from '../schemas/rate';
 import { BooksService } from './books.service';
 import { Book } from '../schemas/book';
-import { interval } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { QuoteService } from './quote.service';
+import { ReviewService } from './review.service';
+import { CommentService } from './comment.service';
+import { UserService } from './user.service';
+import { LogInService } from './log-in.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +21,8 @@ export class RecService {
   rates: Rate[] = [];
   ratesSet: boolean = false;
   interval: any;
+  intervalNoData: any;
+  counter = 1;
   quantityOfBooks: number = 0;
   authorsD: String[] = [];
   keywordsD: String[] = [];
@@ -24,6 +31,12 @@ export class RecService {
   keywordsF: String[] = [];
   genresF: String[] = [];
   scoredBooks:{book: Book, score: number}[] = [];
+  usersRecs: {'favourite': string[], 'dropped': string[]} = {'favourite': [], 'dropped':[]};
+  usersRecsSet: boolean = false;
+  user?:User;
+  getUsersData(id: String, score: Number){
+    return this.http.get<{'favourite': string[], 'dropped': string[]}>(`http://localhost:3000/users/${id}/${score}`);
+  }
   //Приймає два сеьи та видаляє в обох значення, що співпадають
   compareTwoSets(set1:Set<String>, set2:Set<String>){
     for(let val of set1){
@@ -33,6 +46,9 @@ export class RecService {
       }
     }
 
+  }
+  compareScores(a:{book: Book, score: number}, b:{book: Book, score: number}) {
+    return b.score - a.score;
   }
   // створєю 6 масивів: автори, ключові слова та жанри, улюблені та кинуті
   // викликає compareTwoSets та getScore
@@ -74,19 +90,25 @@ export class RecService {
     this.authorsF = [...favA];
     this.keywordsF = [...favK];
     this.genresF = [...favG];
-    // console.log(this.authorsD)
-    // console.log(this.keywordsD)
-    // console.log(this.genresD)
-    // console.log(this.authorsF)
-    // console.log(this.keywordsF)
-    // console.log(this.genresF)
     for (let b of this.allBooks){
       let score = this.getScore(b);
       if(score.score>0){
         this.scoredBooks.push(score);
       }
     }
-    console.log(this.scoredBooks)
+    this.scoredBooks.sort(this.compareScores);
+    if(this.user){
+      this.user.user_books_recommendations = [];
+      this.scoredBooks.forEach( el =>{
+        this.user?.user_books_recommendations.push(el.book)
+      })
+      this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
+        this.logInService.user = this.user;
+        localStorage.setItem('userObject', JSON.stringify(this.user));
+      })
+    }
+
+
 
   }
   getScore(book:Book){
@@ -138,13 +160,22 @@ export class RecService {
     } else if (scoreG < 0){
       scoreG = 0;
     }
-    return {book: book, score: scoreA*kA+scoreK*kK+scoreG*kG}
+    ////////users
+    let kU = 0.2;
+    let scoreU = 5;
+    if(this.usersRecs.dropped.includes(book._id.toString())){
+      scoreU = 0;
+    } else if(this.usersRecs.favourite.includes(book._id.toString())){
+      scoreU = 10;
+    }
+    return {book: book, score: scoreA*kA+scoreK*kK+scoreG*kG+kU*scoreU}
   }
   // перевіряє, чи всі книги додались до масивів, коли всі книги додано викликає getSearchedValues
   timeOut(){
+
     if(this.ratesSet){
       let len = this.dropped.length + this.favourite.length;
-      if(this.quantityOfBooks == len){
+      if(this.quantityOfBooks == len && this.usersRecsSet){
         clearInterval(this.interval);
         this.getSearchedValues();
       }
@@ -152,19 +183,84 @@ export class RecService {
 
   }
   // найперша функція, що є каталізатором, викликає getFavWorstBooks та запускає інтервал
-  getBookRecs(user:User){
-    this.getFavWorstBooks(user);
-    this.interval = setInterval(this.timeOut.bind(this), 1000)
+  getBookRecs(user?:User){
+    if(user){
+      this.user = user;
+      this.getUsersData(user._id, 1).subscribe( data => {
+        this.usersRecs = data;
+        this.usersRecsSet = true;
+      })
+      this.getFavWorstBooks(user);
+      this.interval = setInterval(this.timeOut.bind(this), 1000)
+    } else{
+      this.noDataRecs()
+    }
+
+  }
+  noDataRecs(){
+    this.booksService.getAllBooks().subscribe( data =>{
+      data.forEach( (el) => {
+        if(el.book_average_rate > 3){
+          this.counter+=3
+          this.scoredBooks.push({book: el, score: el.book_average_rate})
+          this.commentService.getCommentByBookId(el._id).subscribe( e => {
+            if(e.length > 0){
+              let book = this.scoredBooks.filter( elem => elem.book._id == e[0].comment_book)[0];
+              book.score+=e.length;
+            }
+            this.counter--;
+          })
+          this.reviewService.getReviewByBookId(el._id).subscribe( e => {
+            if(e.length > 0){
+              let book = this.scoredBooks.filter( elem => elem.book._id == e[0].review_book)[0];
+              book.score+=e.length;
+            }
+            this.counter--;
+          })
+          this.quoteService.getQuoteByBookId(el._id).subscribe( e => {
+            if(e.length > 0){
+              let book = this.scoredBooks.filter( elem => elem.book._id == e[0].quote_book)[0];
+              book.score+=e.length;
+            }
+            this.counter--;
+          })
+        }
+
+      })
+      this.counter--;
+      this.intervalNoData = setInterval(this.noDataTimeOut.bind(this), 1000)
+
+    })
+
+  }
+  noDataTimeOut(){
+    if(!this.counter){
+      this.scoredBooks.sort(this.compareScores);
+      clearInterval(this.intervalNoData);
+
+    }
+
   }
   //витягує з сервера книги та оцінки за айдішниками
   getFavWorstBooks(user:User){
     let dropped_books = user.user_books_dropped;
     let favourite_books = user.user_books_favourite;
     let saved_books = user.user_books_saved;
+    let read_books = user.user_books_read;
     this.rateService.getRateByUserId(user._id).subscribe( data => {
       this.rates = data;
+      let len = new Set();
+      dropped_books.forEach( el => len.add(el));
+      favourite_books.forEach( el => len.add(el));
+      this.rates.forEach( el => {
+        if(el.rate_score!=3){
+          len.add(el.rate_book)
+        }
+
+      });
+      this.quantityOfBooks = len.size;
       this.booksService.getAllBooks().subscribe( data => {
-        let arr = [...dropped_books, ...favourite_books, ...saved_books];
+        let arr: String[] = [...dropped_books, ...favourite_books, ...saved_books, ...read_books];
         for (let r of this.rates){
           arr.push(r.rate_book);
         }
@@ -176,29 +272,43 @@ export class RecService {
           }
         }
       })
-      this.quantityOfBooks = dropped_books.length + favourite_books.length + this.rates.length;
       this.ratesSet = true;
       for (let rate of this.rates){
         this.booksService.getBook(rate.rate_book).subscribe( book => {
           if(rate.rate_score==4 || rate.rate_score==5){
-            this.favourite.push(book);
+            let filter = this.favourite.filter( el => el._id == book._id)[0];
+            if(!filter){
+              this.favourite.push(book);
+            }
           } else if(rate.rate_score==1 || rate.rate_score==2){
-            this.dropped.push(book);
+            let filter = this.dropped.filter( el => el._id == book._id)[0];
+            if(!filter){
+              this.dropped.push(book);
+            }
           }
         })
       }
     })
     for(let db of dropped_books){
       this.booksService.getBook(db).subscribe( book => {
-        this.dropped.push(book);
+        let filter = this.dropped.filter( el => el._id == book._id)[0];
+        if(!filter){
+          this.dropped.push(book);
+        }
       })
     }
     for(let fb of favourite_books){
       this.booksService.getBook(fb).subscribe( book => {
-        this.favourite.push(book);
+        let filter = this.favourite.filter( el => el._id == book._id)[0];
+        if(!filter){
+          this.favourite.push(book);
+        }
       })
     }
   }
 
-  constructor(public rateService: RateService, public booksService: BooksService) { }
+  constructor(public rateService: RateService, public booksService: BooksService,
+    public http: HttpClient, public quoteService: QuoteService, public reviewService: ReviewService,
+    public commentService: CommentService, public userService: UserService,
+  public logInService: LogInService) { }
 }

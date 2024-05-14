@@ -4,6 +4,7 @@ import { Book } from 'src/app/schemas/book';
 import { BooksService } from 'src/app/services/books.service';
 import { LogInService } from 'src/app/services/log-in.service';
 import { RateService } from 'src/app/services/rate.service';
+import { RecService } from 'src/app/services/rec.service';
 
 @Component({
   selector: 'app-rate',
@@ -62,7 +63,7 @@ export class RateComponent implements AfterViewChecked {
   }
   constructor(private renderer:Renderer2, public logInService: LogInService,
     public rateService: RateService, private route: ActivatedRoute,
-    public booksService: BooksService
+    public booksService: BooksService, public recsService: RecService
   ){}
   @Input() rate!: number;
   loaded: boolean = false;
@@ -75,6 +76,7 @@ export class RateComponent implements AfterViewChecked {
     if(user){
       let rate = {rate_user: user, rate_book: this.book, rate_score: score};
       this.rateService.postRate(rate).subscribe( (data) => {
+        this.recsService.getBookRecs(user);
         let st = this.stars.toArray()
         for (let s of st){
           this.renderer.setStyle(s.nativeElement, 'width', `30px`);

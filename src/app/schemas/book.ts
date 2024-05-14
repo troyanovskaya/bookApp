@@ -12,7 +12,6 @@ export interface Book {
     book_description: String[];
     book_keywords: String[];
     book_genres: String[];
-    book_rates: {user: User, rate: Number, date: Date}[];
     book_average_rate: number;
     book_quotes: String[][];
     book_img: String[];

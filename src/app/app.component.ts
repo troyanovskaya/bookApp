@@ -11,7 +11,7 @@ import { RecService } from './services/rec.service';
 })
 export class AppComponent implements OnInit {
   constructor(public visibilityService: VisibilityService,
-    public logInService: LogInService, private router: Router, public recService: RecService){}
+    public logInService: LogInService, private router: Router){}
   ngOnInit(): void {
     this.logInService.checkLoggedInUser();
     this.router.events.subscribe((event) => {
@@ -20,9 +20,7 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0)
     });
-    if(this.logInService.user){
-      this.recService.getBookRecs(this.logInService.user);
-    }
+
 
 
   }

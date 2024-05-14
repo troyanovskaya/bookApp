@@ -33,6 +33,7 @@ import { BtnAddComponent } from './components/reusable/btn-add/btn-add.component
 import { BookListsPageComponent } from './components/book-lists-page/book-lists-page.component';
 import { ListHeaderComponent } from './components/book-lists-page/list-header/list-header.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { RecPageComponent } from './components/rec-page/rec-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
     BtnAddComponent,
     BookListsPageComponent,
     ListHeaderComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    RecPageComponent
   ],
   imports: [
     BrowserModule,

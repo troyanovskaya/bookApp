@@ -3,7 +3,7 @@ import { User } from "./user";
 
 export interface Review {
   _id: String,
-  review_book: Book,
+  review_book: String,
   review_book_img: String[],
   review_book_name: String,
   review_book_authors: String[],

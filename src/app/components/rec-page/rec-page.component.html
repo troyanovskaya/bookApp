@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="text">Book recommendations for {{logInService.user?.user_login}}</div>
+  <ng-container *ngFor="let book of logInService.user?.user_books_recommendations; let i = index">
+    <app-book *ngIf="i < bookShown" [book]="book"></app-book>
+  </ng-container>
+  <div class="no-results" *ngIf="logInService.user?.user_books_recommendations?.length == 0">
+    No results found. Try again!
+  </div>
+  <div *ngIf="bookShown < recService.scoredBooks.length" class="add-books">
+    <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>
+  </div>
+
+</div>

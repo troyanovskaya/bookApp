@@ -11,6 +11,7 @@ import { LogInService } from 'src/app/services/log-in.service';
 export class BookListsPageComponent implements OnInit{
   chosenList: string = 'Saved';
   chosenBooks: Book[] = [];
+  bookShown: number = 10;
   changeList(list: any){
     this.chosenList = list;
     this.chosenBooks = [];
@@ -51,6 +52,9 @@ export class BookListsPageComponent implements OnInit{
         }
     }
 
+  }
+  showMoreBooks(){
+    this.bookShown = this.bookShown + 10;
   }
   constructor(public logInService: LogInService, public booksService: BooksService){}
   ngOnInit(): void {

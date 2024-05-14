@@ -1,20 +1,14 @@
-app-list-header{
-  margin: 20px;
-}
-.book-container{
+.container{
   display: flex;
   flex-direction: column;
-  gap:20px;
   justify-content: center;
-  align-items:center;
-  margin-bottom: 20px;
+  align-items: center;
+  margin: 20px 20px 0px 20px;
 }
-.no-books{
+.no-results{
   font-style: italic;
-  color: grey;
-
-  margin-top: 20px;
 }
+
 .add-books{
   button{
     background-color: #182b5b;
@@ -28,4 +22,10 @@ app-list-header{
   display: flex;
   justify-content: center;
   margin: 20px 20px 20px 20px;
+}
+.text{
+  padding: 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+  width: 100%;
 }

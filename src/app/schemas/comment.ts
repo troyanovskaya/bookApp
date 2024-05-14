@@ -3,7 +3,7 @@ import { User } from "./user";
 
 export interface Comm {
   _id: String,
-  comment_book: Book,
+  comment_book: String,
   comment_book_img: String[],
   comment_book_name: String,
   comment_book_authors: String[],

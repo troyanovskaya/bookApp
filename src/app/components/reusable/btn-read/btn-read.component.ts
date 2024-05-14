@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnInit } fr
 import { Book } from 'src/app/schemas/book';
 import { BooksService } from 'src/app/services/books.service';
 import { LogInService } from 'src/app/services/log-in.service';
+import { RecService } from 'src/app/services/rec.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class BtnReadComponent implements DoCheck{
   @Input() book?:Book;
-  states:string[] = ["Unread", "Read", "Saved", "Dropped", "Fovourite"];
+  states:string[] = ["Unread", "Read", "Saved", "Dropped", "Favourite"];
   visible:boolean=false;
   currentState?:string;
   dropdown(){
@@ -37,22 +38,18 @@ export class BtnReadComponent implements DoCheck{
         case "Dropped":
           user.user_books_dropped.push(this.book._id);
           break;
-        case "Fovourite":
+        case "Favourite":
           user.user_books_favourite.push(this.book._id);
           break;
 
       }
       update = user;
-      this.userService.patchUser(update, user._id).subscribe( data =>{
-        console.log(data)
-      });
-      this.logInService.user = user;
-      localStorage.setItem('userObject', JSON.stringify(user));
+      this.recsService.getBookRecs(user);
     }
     this.dropdown();
   }
   constructor(public logInService: LogInService, public booksService: BooksService,
-    public userService: UserService){}
+    public userService: UserService, public recsService: RecService){}
   ngDoCheck(){
     let user = this.logInService.user;
     let bookId = this.book?._id;

@@ -1,6 +1,11 @@
 <app-list-header (listEmitter)="changeList($event)"></app-list-header>
 <div class="book-container">
-  <app-book *ngFor="let book of chosenBooks" [book]="book"></app-book>
+  <ng-container  *ngFor="let book of chosenBooks; let i = index">
+    <app-book *ngIf="i < bookShown" [book]="book"></app-book>
+  </ng-container>
   <div class="no-books" *ngIf="chosenBooks.length==0">No books on this list right now. Add some!</div>
+</div>
+<div *ngIf="bookShown < chosenBooks.length" class="add-books">
+  <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>
 </div>
 

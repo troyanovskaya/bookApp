@@ -6,6 +6,7 @@ import { BookReviewPageComponent } from './components/book-review-page/book-revi
 import { BookQuotePageComponent } from './components/book-quote-page/book-quote-page.component';
 import { BookListsPageComponent } from './components/book-lists-page/book-lists-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { RecPageComponent } from './components/rec-page/rec-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'books/:id/quotes', component: BookQuotePageComponent },
   { path: 'bookList', component: BookListsPageComponent },
   { path: 'profile', component: ProfilePageComponent },
+  { path: 'bookRecs', component: RecPageComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
