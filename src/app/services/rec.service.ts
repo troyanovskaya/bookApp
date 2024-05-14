@@ -102,10 +102,14 @@ export class RecService {
       this.scoredBooks.forEach( el =>{
         this.user?.user_books_recommendations.push(el.book)
       })
-      this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
-        this.logInService.user = this.user;
-        localStorage.setItem('userObject', JSON.stringify(this.user));
-      })
+      if(this.user.user_books_recommendations.length < 10){
+        this.noDataRecs();
+      } else{
+        this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
+          this.logInService.user = this.user;
+          localStorage.setItem('userObject', JSON.stringify(this.user));
+        })
+      }
     }
 
 
@@ -193,6 +197,7 @@ export class RecService {
       this.getFavWorstBooks(user);
       this.interval = setInterval(this.timeOut.bind(this), 1000)
     } else{
+      this.scoredBooks = [];
       this.noDataRecs()
     }
 
@@ -236,6 +241,16 @@ export class RecService {
   noDataTimeOut(){
     if(!this.counter){
       this.scoredBooks.sort(this.compareScores);
+      if(this.user){
+        this.scoredBooks.forEach( el =>{
+          this.user?.user_books_recommendations.push(el.book)
+        })
+        this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
+          this.logInService.user = this.user;
+          localStorage.setItem('userObject', JSON.stringify(this.user));
+        })
+
+      }
       clearInterval(this.intervalNoData);
 
     }

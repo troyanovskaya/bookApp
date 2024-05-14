@@ -14,9 +14,11 @@ export class RecPageComponent implements OnInit{
   ngOnInit(): void {
     // if(this.logInService.user && this.recService.scoredBooks.length==0){
     //   this.val = this.recService.getBookRecs(this.logInService.user);
-    // } else if (!this.logInService.user){
-    //   this.recService.getBookRecs()
-    // }
+    if (!this.logInService.user){
+      this.recService.getBookRecs()
+    } else if(this.logInService.user.user_books_recommendations.length < 10){
+      this.recService.getBookRecs(this.logInService.user);
+    }
   }
   showMoreBooks(){
     this.bookShown = this.bookShown + 10;
