@@ -7,6 +7,7 @@ import { BookQuotePageComponent } from './components/book-quote-page/book-quote-
 import { BookListsPageComponent } from './components/book-lists-page/book-lists-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { RecPageComponent } from './components/rec-page/rec-page.component';
+import { AuthorPageComponent } from './components/author-page/author-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'bookList', component: BookListsPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'bookRecs', component: RecPageComponent },
+  { path: 'authors/:name', component: AuthorPageComponent },
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

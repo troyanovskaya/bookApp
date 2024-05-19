@@ -1,0 +1,36 @@
+.container{
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+.book-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+}
+.no-author{
+  font-style: italic;
+  margin: 20px;
+  text-align: center;
+}
+.name{
+  width: 100%;
+  font-size: 1.2em;
+}
+.series{
+  color: #0b193c;
+  font-size: 1.1em;
+}
+hr{
+  color: #0b193c;
+  width: 100%;
+}
+img{
+  width: 100px;
+  float: left;
+  padding: 20px;
+}

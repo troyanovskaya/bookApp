@@ -5,7 +5,7 @@ export  interface Author{
   author_name: String[];
   author_biography: String[];
   author_date_of_birth: String;
-  author_books: Book[];
+  author_books: String[];
   author_img: String;
-  author_series: Series[]
+  author_series: String[]
 }

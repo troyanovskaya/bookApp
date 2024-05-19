@@ -92,7 +92,7 @@ export class RecService {
     this.genresF = [...favG];
     for (let b of this.allBooks){
       let score = this.getScore(b);
-      if(score.score>0){
+      if(score.score>1){
         this.scoredBooks.push(score);
       }
     }
@@ -100,9 +100,11 @@ export class RecService {
     if(this.user){
       this.user.user_books_recommendations = [];
       this.scoredBooks.forEach( el =>{
+        console.log('scoredBooks ', el)
         this.user?.user_books_recommendations.push(el.book)
       })
       if(this.user.user_books_recommendations.length < 10){
+        console.log('No data recs')
         this.noDataRecs();
       } else{
         this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
@@ -203,6 +205,7 @@ export class RecService {
 
   }
   noDataRecs(){
+    console.log('No data recs here')
     this.booksService.getAllBooks().subscribe( data =>{
       data.forEach( (el) => {
         if(el.book_average_rate > 3){
@@ -239,8 +242,10 @@ export class RecService {
 
   }
   noDataTimeOut(){
+    console.log('No data timeout')
     if(!this.counter){
       this.scoredBooks.sort(this.compareScores);
+      console.log(this.scoredBooks)
       if(this.user){
         this.scoredBooks.forEach( el =>{
           this.user?.user_books_recommendations.push(el.book)

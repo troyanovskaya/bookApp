@@ -35,6 +35,7 @@ import { ListHeaderComponent } from './components/book-lists-page/list-header/li
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { RecPageComponent } from './components/rec-page/rec-page.component';
 import { NoUserRecsComponent } from './components/book-header/no-user-recs/no-user-recs.component';
+import { AuthorPageComponent } from './components/author-page/author-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +69,8 @@ import { NoUserRecsComponent } from './components/book-header/no-user-recs/no-us
     ListHeaderComponent,
     ProfilePageComponent,
     RecPageComponent,
-    NoUserRecsComponent
+    NoUserRecsComponent,
+    AuthorPageComponent
   ],
   imports: [
     BrowserModule,

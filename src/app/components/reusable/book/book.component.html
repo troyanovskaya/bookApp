@@ -13,7 +13,7 @@
         </span>
       </div>
       <div>
-        Author: <span underlineD pointerD
+        Author: <span underlineD pointerD routerLink="/authors/{{author}}"
                   *ngFor="let author of this.book?.book_authors">
                   {{author}}
                 </span>

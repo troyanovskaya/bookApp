@@ -11,7 +11,7 @@
       </span>
     </div>
     <div>
-      <span underlineD pointerD
+      <span underlineD pointerD routerLink="/authors/{{author}}"
           *ngFor="let author of this.book?.book_authors">
           {{author}}
       </span>
@@ -39,4 +39,5 @@
     <div class="no-comment">Only authorised users can leave comments in this section. Sign in to continue!</div>
   </div>
   <app-comments *ngFor="let com of comments" [comment]="com"></app-comments>
+  <div class="no-comment">Sorry, no comments on this section right now!</div>
 </div>
