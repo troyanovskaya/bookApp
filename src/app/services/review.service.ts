@@ -12,5 +12,8 @@ export class ReviewService {
   getReviewByBookId(id: String){
     return this.http.get<Review[]>(`http://localhost:3000/reviews/books/${id}`);
   }
+  deleteReview(id: String){
+    return this.http.delete<Review>(`http://localhost:3000/reviews/${id}`);
+  }
   constructor(public http: HttpClient) { }
 }

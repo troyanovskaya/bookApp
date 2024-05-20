@@ -4,9 +4,13 @@
       <div class="quote">{{t}}</div>
     </ng-container>
   </div>
+
   <div class="quote-character right">{{quote?.quote_character}}</div>
   <div class="quote-user right">by {{quote?.quote_user_login}}</div>
   <div class="quote-date right">{{quote?.quote_date}}</div>
+  <div class="oper">
+    <div (click)="deleteQuote()" class="delete" underlineD pointerD *ngIf="belongToUser">Delete</div>
+  </div>
 
 </div>
 

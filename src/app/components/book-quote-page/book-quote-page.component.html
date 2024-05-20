@@ -1,9 +1,13 @@
 <div  class="quotes-container">
   <div class="label">Quotes from
-  <span underlineD pointerD routerLink="/books/{{this.book?._id}}">
-    {{book?.book_name}}
-  </span> ,
-   by {{book?.book_authors?.join(', ')}}</div>
+    <span underlineD pointerD routerLink="/books/{{this.book?._id}}">
+      {{book?.book_name}}
+    </span> , by
+   <span routerLink="/authors/{{author}}"
+    *ngFor="let author of book?.book_authors" pointerD underlineD>
+    {{author}}
+    </span>
+  </div>
   <div class="user-quote" *ngIf="logInService.user && showCommentField">
     <textarea class="textarea" placeholder="Write the quote..." name="user-quote"
     cols="50" rows="10" [(ngModel)]="q"></textarea>
@@ -21,7 +25,9 @@
   </div>
   <hr *ngIf="quotes.length>0">
   <div class="quotes">
-    <app-quote *ngFor="let q of quotes" [quote]="q"></app-quote>
+    <app-quote *ngFor="let q of quotes" [quote]="q" (reloadQuotes)="reloadQuotes()"
+      [belongToUser]="this.logInService.user?._id == q.quote_user">
+    </app-quote>
   </div>
 
   <hr *ngIf="quotes.length>0">

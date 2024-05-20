@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/schemas/book';
 import { Quote } from 'src/app/schemas/quote';
@@ -11,7 +11,7 @@ import { QuoteService } from 'src/app/services/quote.service';
   templateUrl: './book-quote-page.component.html',
   styleUrls: ['./book-quote-page.component.scss']
 })
-export class BookQuotePageComponent {
+export class BookQuotePageComponent implements OnInit{
   q: String = '';
   q_by: String = '';
   book?: Book;
@@ -21,6 +21,11 @@ export class BookQuotePageComponent {
   constructor(public logInService: LogInService, public quoteService: QuoteService,
     private route: ActivatedRoute, public booksService: BooksService
   ){}
+  reloadQuotes(){
+    this.quoteService.getQuoteByBookId(this.id).subscribe( quotes => {
+      this.quotes = quotes;
+    })
+  }
   postQuote(){
     let book = this.book;
     let user = this.logInService.user;

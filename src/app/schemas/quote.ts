@@ -7,7 +7,7 @@ export interface Quote {
   quote_book_img: String[],
   quote_book_name: String,
   quote_book_authors: String[],
-  quote_user: User,
+  quote_user: String,
   quote_user_img: String,
   quote_user_login: String,
   quote_text: String[],

@@ -1,5 +1,6 @@
 .quote-container{
-  width: 100%;
+
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap:10px;
@@ -26,4 +27,14 @@
 hr{
   width: 80%;
   color: gray
+}
+.oper{
+  position:relative;
+  width:80%;
+  .delete{
+    position:absolute;
+    left:0px;
+    bottom:15px;
+    color: rgb(150, 20, 20);
+  }
 }
