@@ -36,6 +36,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { RecPageComponent } from './components/rec-page/rec-page.component';
 import { NoUserRecsComponent } from './components/book-header/no-user-recs/no-user-recs.component';
 import { AuthorPageComponent } from './components/author-page/author-page.component';
+import { EditCommentComponent } from './components/book-page/edit-comment/edit-comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { AuthorPageComponent } from './components/author-page/author-page.compon
     ProfilePageComponent,
     RecPageComponent,
     NoUserRecsComponent,
-    AuthorPageComponent
+    AuthorPageComponent,
+    EditCommentComponent
   ],
   imports: [
     BrowserModule,

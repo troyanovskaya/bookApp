@@ -7,6 +7,11 @@
   <div class="comment-container">
     <ng-container *ngFor="let c of comment?.comment_text">
     <div>&nbsp;&nbsp;{{c}}</div></ng-container>
+    <div class="oper">
+      <div (click)="deleteComm()" class="delete" underlineD pointerD *ngIf="belongToUser">Delete</div>
+      <div (click)="editComm()" class="edit" underlineD pointerD *ngIf="belongToUser">Edit</div>
+    </div>
+
 
   </div>
 </div>

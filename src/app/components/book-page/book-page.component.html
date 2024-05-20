@@ -1,3 +1,4 @@
+<app-edit-comment *ngIf="editComment" [comm]="commToEdit" (closeWindow)="close()" (editedText)="updateComm($event)"></app-edit-comment>
 <app-header></app-header>
 <div class="container">
   <div class="img-container">
@@ -38,6 +39,9 @@
   <div *ngIf="!logInService.user">
     <div class="no-comment">Only authorised users can leave comments in this section. Sign in to continue!</div>
   </div>
-  <app-comments *ngFor="let com of comments" [comment]="com"></app-comments>
-  <div class="no-comment">Sorry, no comments on this section right now!</div>
+  <app-comments *ngFor="let com of comments" [comment]="com" (commDeleted)="reloadComms()"
+      (commEdit)="editComm($event)"
+      [belongToUser]="logInService.user?._id==com.comment_user">
+  </app-comments>
+  <div *ngIf="comments.length==0" class="no-comment">Sorry, no comments on this section right now!</div>
 </div>

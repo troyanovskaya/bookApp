@@ -18,6 +18,8 @@ export class BookPageComponent implements OnInit {
   book?: Book;
   comm: String = '';
   comments: Comm[] = [];
+  editComment:Boolean = false;
+  commToEdit?:Comm;
   showCommentField:boolean = false;
   constructor( public booksService: BooksService,
      private route: ActivatedRoute, public logInService: LogInService,
@@ -37,6 +39,26 @@ export class BookPageComponent implements OnInit {
   changeVisibility(event: boolean){
     this.showCommentField = event;
   }
+  reloadComms(){
+    this.commentService.getCommentByBookId(this.id).subscribe( comments => {
+      this.comments = comments
+    });
+  }
+  editComm(event: Comm){
+    console.log(event)
+    this.commToEdit = event;
+    this.editComment = true;
+  }
+  updateComm(text: string[]){
+    if(this.commToEdit){
+      this.commToEdit.comment_text = text;
+      this.commentService.editComment(this.commToEdit).subscribe( data =>{
+        console.log(data);
+        this.reloadComms();
+      })
+    }
+
+  }
   postComment(){
     let book = this.book;
     let user = this.logInService.user;
@@ -54,6 +76,9 @@ export class BookPageComponent implements OnInit {
       this.showCommentField = false;
     }
 
+  }
+  close(){
+    this.editComment = false;
   }
 
 }

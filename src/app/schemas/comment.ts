@@ -7,7 +7,7 @@ export interface Comm {
   comment_book_img: String[],
   comment_book_name: String,
   comment_book_authors: String[],
-  comment_user: User,
+  comment_user: String,
   comment_user_img: String,
   comment_user_login: String,
   comment_text: string[],

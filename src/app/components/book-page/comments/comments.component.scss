@@ -17,8 +17,24 @@ p{
 }
 .comment-container{
   width: 400px;
+  position: relative;
 }
 .date{
   font-style:italic;
   color: grey
+}
+.oper{
+  font-size: 0.8em;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.delete{
+  color: rgb(150, 20, 20);
+}
+.edit{
+  color: rgb(2, 104, 2);
 }

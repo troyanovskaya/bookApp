@@ -9,6 +9,12 @@ export class CommentService {
   postComment(comment: any){
     return this.http.post<Comm>('http://localhost:3000/comments', comment);
   }
+  deleteComment(id: String){
+    return this.http.delete<Comm>(`http://localhost:3000/comments/${id}`);
+  }
+  editComment(comm: Comm){
+    return this.http.patch<Comm>(`http://localhost:3000/comments/${comm._id}`, comm);
+  }
   getCommentByBookId(id: String){
     return this.http.get<Comm[]>(`http://localhost:3000/comments/books/${id}`);
   }
