@@ -7,6 +7,8 @@
   <div class="review-container">
     <ng-container *ngFor="let c of review?.review_text">
     <div>&nbsp;&nbsp;{{c}}</div></ng-container>
-
+  </div>
+  <div class="oper">
+    <div (click)="deleteReview()" class="delete" underlineD pointerD *ngIf="belongToUser">Delete</div>
   </div>
 </div>

@@ -1,12 +1,13 @@
+<app-rec-panel (onKChange)="getRecs($event)"></app-rec-panel>
 <div class="container" *ngIf="logInService.user; else noUser">
   <div class="text">Book recommendations for {{logInService.user.user_login}}</div>
-  <ng-container *ngFor="let book of logInService.user?.user_books_recommendations; let i = index">
-    <app-book *ngIf="i < bookShown" [book]="book"></app-book>
+  <ng-container *ngFor="let book of recArray; let i = index">
+    <app-book *ngIf="i < bookShown" [book]="book.book"></app-book>
   </ng-container>
-  <div class="no-results" *ngIf="logInService.user?.user_books_recommendations?.length == 0">
+  <div class="no-results" *ngIf="recArray.length == 0">
     No results found. Try again!
   </div>
-  <div *ngIf="(logInService.user?.user_books_recommendations?.length || 0) > bookShown  " class="add-books">
+  <div *ngIf="recArray.length > bookShown  " class="add-books">
     <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>
   </div>
 </div>

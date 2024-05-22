@@ -17,5 +17,5 @@
   <div *ngIf="reviews.length==0">
     <div class="no-review">No reviews here right now. Add some yourself!</div>
   </div>
-  <app-review *ngFor="let r of reviews" [review]="r"></app-review>
+  <app-review (reloadReviews)="reload()"  *ngFor="let r of reviews" [belongToUser]="this.logInService.user?._id == r.review_user" [review]="r"></app-review>
 </div>

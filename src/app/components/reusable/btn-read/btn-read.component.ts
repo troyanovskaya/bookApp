@@ -21,6 +21,7 @@ export class BtnReadComponent implements DoCheck{
   changeListItem(index:number){
     this.currentState = this.states[index];
     let update;
+    console.log('changeListItem');
     if(this.book && this.book._id && this.logInService.user){
       let bookId = this.book._id;
       let user = this.logInService.user;
@@ -43,7 +44,14 @@ export class BtnReadComponent implements DoCheck{
           break;
 
       }
+      // user.user_books_read = [];
+      // user.user_books_saved = [];
+      // user.user_books_dropped = [];
+      // user.user_books_favourite = [];
+      // user.user_books_recommendations = [];
       update = user;
+      this.logInService.user = user;
+      localStorage.setItem('userObject', JSON.stringify(user));
       this.recsService.getBookRecs(user);
     }
     this.dropdown();

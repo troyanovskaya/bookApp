@@ -16,6 +16,7 @@ export class BookReviewPageComponent implements OnInit{
   book?: Book;
   id: String = '';
   reviews: Review[] = [];
+
   showCommentField:boolean = false;
   constructor(public logInService: LogInService, public reviewService: ReviewService,
     private route: ActivatedRoute, public booksService: BooksService
@@ -33,8 +34,14 @@ export class BookReviewPageComponent implements OnInit{
       this.reviewService.postReview(review).subscribe( data => {
         this.rew = '';
         this.reviews.push(data);
+        this.showCommentField = false;
       })
     }
+  }
+  reload(){
+    this.reviewService.getReviewByBookId(this.id).subscribe( reviews => {
+      this.reviews = reviews
+    })
   }
   changeVisibility(event: boolean){
     this.showCommentField = event;

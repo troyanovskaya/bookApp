@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../schemas/user';
 import { RateService } from './rate.service';
 import { Rate } from '../schemas/rate';
@@ -34,8 +34,22 @@ export class RecService {
   usersRecs: {'favourite': string[], 'dropped': string[]} = {'favourite': [], 'dropped':[]};
   usersRecsSet: boolean = false;
   user?:User;
+  k1 = 0.2;
+  k2 = 0.3;
+  k3 = 0.3;
+  k4 = 0.2;
+  recsSorted:EventEmitter<boolean> = new EventEmitter<boolean>
   getUsersData(id: String, score: Number){
     return this.http.get<{'favourite': string[], 'dropped': string[]}>(`http://localhost:3000/users/${id}/${score}`);
+  }
+  getK(){
+    return [this.k1, this.k2, this.k3, this.k4]
+  }
+  setK(k:number[]){
+    this.k1 = k[0];
+    this.k2 = k[1];
+    this.k3 = k[2];
+    this.k4 = k[3];
   }
   //Приймає два сеьи та видаляє в обох значення, що співпадають
   compareTwoSets(set1:Set<String>, set2:Set<String>){
@@ -98,18 +112,22 @@ export class RecService {
     }
     this.scoredBooks.sort(this.compareScores);
     if(this.user){
-      this.user.user_books_recommendations = [];
-      this.scoredBooks.forEach( el =>{
-        console.log('scoredBooks ', el)
-        this.user?.user_books_recommendations.push(el.book)
-      })
+      console.log('scoredBooks')
+      console.log(this.scoredBooks)
       if(this.user.user_books_recommendations.length < 10){
         console.log('No data recs')
+        this.scoredBooks = [];
         this.noDataRecs();
       } else{
+        this.user.user_books_recommendations = [];
+        this.scoredBooks.forEach( el =>{
+          console.log(el)
+          this.user?.user_books_recommendations.push(el.book._id);
+        })
         this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
           this.logInService.user = this.user;
           localStorage.setItem('userObject', JSON.stringify(this.user));
+          this.recsSorted.emit(true);
         })
       }
     }
@@ -119,7 +137,7 @@ export class RecService {
   }
   getScore(book:Book){
     //////////////authors
-    let kA = 0.2;
+    let kA = this.k1;
     let scoreA = 0;
     for (let a of book.book_authors){
       if(this.authorsF.includes(a.toLocaleLowerCase())){
@@ -135,7 +153,7 @@ export class RecService {
       scoreA = 0;
     }
     /////////////////// keywords
-    let kK = 0.3;
+    let kK = this.k2;
     let scoreK = 0;
     for (let k of book.book_keywords){
       if(this.keywordsF.includes(k.toLocaleLowerCase())){
@@ -151,7 +169,7 @@ export class RecService {
       scoreK = 0;
     }
     ////////////////// genres
-    let kG = 0.3;
+    let kG = this.k3;
     let scoreG = 0;
     for (let g of book.book_genres){
       if(this.genresF.includes(g.toLocaleLowerCase())){
@@ -167,7 +185,7 @@ export class RecService {
       scoreG = 0;
     }
     ////////users
-    let kU = 0.2;
+    let kU = this.k4;
     let scoreU = 5;
     if(this.usersRecs.dropped.includes(book._id.toString())){
       scoreU = 0;
@@ -178,18 +196,40 @@ export class RecService {
   }
   // перевіряє, чи всі книги додались до масивів, коли всі книги додано викликає getSearchedValues
   timeOut(){
-
+    console.log('qqq')
     if(this.ratesSet){
       let len = this.dropped.length + this.favourite.length;
+      console.log(len)
+      console.log(this.quantityOfBooks)
       if(this.quantityOfBooks == len && this.usersRecsSet){
+        console.log('timeout')
         clearInterval(this.interval);
         this.getSearchedValues();
       }
     }
 
   }
+  clearAll(){
+  this.dropped = [];
+  this.favourite = [];
+  this.allBooks = [];
+  this.rates = [];
+  this.ratesSet = false;
+  this.counter = 1;
+  this.quantityOfBooks = 0;
+  this.authorsD = [];
+  this.keywordsD = [];
+  this.genresD = [];
+  this.authorsF = [];
+  this.keywordsF = [];
+  this.genresF = [];
+  this.scoredBooks = [];
+  this.usersRecs = {'favourite': [], 'dropped':[]};
+  this.usersRecsSet = false;
+  }
   // найперша функція, що є каталізатором, викликає getFavWorstBooks та запускає інтервал
   getBookRecs(user?:User){
+    this.clearAll();
     if(user){
       this.user = user;
       this.getUsersData(user._id, 1).subscribe( data => {
@@ -243,19 +283,24 @@ export class RecService {
   }
   noDataTimeOut(){
     console.log('No data timeout')
+    console.log('beginning')
     if(!this.counter){
+      console.log('middle1')
       this.scoredBooks.sort(this.compareScores);
       console.log(this.scoredBooks)
       if(this.user){
         this.scoredBooks.forEach( el =>{
-          this.user?.user_books_recommendations.push(el.book)
+          this.user?.user_books_recommendations.push(el.book._id)
         })
         this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
           this.logInService.user = this.user;
           localStorage.setItem('userObject', JSON.stringify(this.user));
+          console.log('middle2')
+          this.recsSorted.emit(true);
         })
 
       }
+      console.log('end')
       clearInterval(this.intervalNoData);
 
     }
@@ -296,13 +341,15 @@ export class RecService {
       for (let rate of this.rates){
         this.booksService.getBook(rate.rate_book).subscribe( book => {
           if(rate.rate_score==4 || rate.rate_score==5){
-            let filter = this.favourite.filter( el => el._id == book._id)[0];
-            if(!filter){
+            let filter1 = this.favourite.filter( el => el._id == book._id)[0];
+            let filter2 = this.dropped.filter( el => el._id == book._id)[0];
+            if(!filter1 && !filter2){
               this.favourite.push(book);
             }
           } else if(rate.rate_score==1 || rate.rate_score==2){
-            let filter = this.dropped.filter( el => el._id == book._id)[0];
-            if(!filter){
+            let filter1 = this.favourite.filter( el => el._id == book._id)[0];
+            let filter2 = this.dropped.filter( el => el._id == book._id)[0];
+            if(!filter1 && !filter2){
               this.dropped.push(book);
             }
           }
@@ -311,16 +358,18 @@ export class RecService {
     })
     for(let db of dropped_books){
       this.booksService.getBook(db).subscribe( book => {
-        let filter = this.dropped.filter( el => el._id == book._id)[0];
-        if(!filter){
+        let filter1 = this.favourite.filter( el => el._id == book._id)[0];
+        let filter2 = this.dropped.filter( el => el._id == book._id)[0];
+        if(!filter1 && !filter2){
           this.dropped.push(book);
         }
       })
     }
     for(let fb of favourite_books){
       this.booksService.getBook(fb).subscribe( book => {
-        let filter = this.favourite.filter( el => el._id == book._id)[0];
-        if(!filter){
+        let filter1 = this.favourite.filter( el => el._id == book._id)[0];
+        let filter2 = this.dropped.filter( el => el._id == book._id)[0];
+        if(!filter1 && !filter2){
           this.favourite.push(book);
         }
       })

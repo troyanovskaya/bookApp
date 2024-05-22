@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Book } from 'src/app/schemas/book';
+import { BooksService } from 'src/app/services/books.service';
 import { LogInService } from 'src/app/services/log-in.service';
 import { RecService } from 'src/app/services/rec.service';
 
@@ -7,23 +9,55 @@ import { RecService } from 'src/app/services/rec.service';
   templateUrl: './rec-page.component.html',
   styleUrls: ['./rec-page.component.scss']
 })
-export class RecPageComponent implements OnInit{
-  constructor(public recService: RecService, public logInService: LogInService){}
+export class RecPageComponent implements OnInit, OnDestroy{
+  constructor(public recService: RecService, public logInService: LogInService, public booksService: BooksService){}
+  ngOnDestroy(): void {
+    this.recService.setK([0.2, 0.3, 0.3, 0.2])
+  }
   bookShown: number = 10;
+  recArray: {book:Book, num:number}[] = [];
   val: any;
-  on(){
-    console.log(this.logInService.user?.user_books_recommendations?.length)
+  compareNumbers(a:{book: Book, num: number}, b:{book: Book, num: number}) {
+    return a.num - b.num;
+  }
+  showRecs(){
+    this.recArray = [];
+    if(this.logInService.user){
+      this.logInService.user.user_books_recommendations.forEach( (book, index, arr) =>{
+        this.booksService.getBook(book).subscribe( data =>{
+          this.recArray.push({book:data, num:index});
+          if(arr.length==this.recArray.length){
+            this.recArray.sort(this.compareNumbers);
+          }
+        })
+      })
+    }
+  }
+  getRecs(k:number[]=[]){
+    console.log('K: ', k)
+
+    if(k.length == 4){
+      console.log('set')
+      this.recService.setK(k);
+      this.recService.getBookRecs(this.logInService.user);
+    } else{
+      if(this.logInService.user && this.logInService.user.user_books_recommendations.length > 9){
+        this.showRecs()
+      }
+      if (!this.logInService.user){
+        console.log('111')
+        this.recService.getBookRecs();
+      } else if(this.logInService.user.user_books_recommendations.length < 10){
+        console.log('222')
+        this.recService.getBookRecs(this.logInService.user);
+      }
+    }
+
   }
   ngOnInit(): void {
-    // if(this.logInService.user && this.recService.scoredBooks.length==0){
-    //   this.val = this.recService.getBookRecs(this.logInService.user);
-    if (!this.logInService.user){
-      console.log('111')
-      this.recService.getBookRecs()
-    } else if(this.logInService.user.user_books_recommendations.length < 10){
-      console.log('222')
-      this.recService.getBookRecs(this.logInService.user);
-    }
+    this.getRecs();
+    this.recService.recsSorted.subscribe( data => {
+      this.showRecs()})
   }
   showMoreBooks(){
     console.log(this.bookShown)

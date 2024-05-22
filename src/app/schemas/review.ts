@@ -7,7 +7,7 @@ export interface Review {
   review_book_img: String[],
   review_book_name: String,
   review_book_authors: String[],
-  review_user: User,
+  review_user: String,
   review_user_img: String,
   review_user_login: String,
   review_text: string[],
