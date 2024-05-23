@@ -38,6 +38,7 @@ import { NoUserRecsComponent } from './components/book-header/no-user-recs/no-us
 import { AuthorPageComponent } from './components/author-page/author-page.component';
 import { EditCommentComponent } from './components/book-page/edit-comment/edit-comment.component';
 import { RecPanelComponent } from './components/rec-page/rec-panel/rec-panel.component';
+import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-rec-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { RecPanelComponent } from './components/rec-page/rec-panel/rec-panel.com
     NoUserRecsComponent,
     AuthorPageComponent,
     EditCommentComponent,
-    RecPanelComponent
+    RecPanelComponent,
+    NoUserRecPageComponent
   ],
   imports: [
     BrowserModule,

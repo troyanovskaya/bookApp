@@ -10,6 +10,7 @@ import { ReviewService } from './review.service';
 import { CommentService } from './comment.service';
 import { UserService } from './user.service';
 import { LogInService } from './log-in.service';
+import { NoUserRecService } from './no-user-rec.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class RecService {
   rates: Rate[] = [];
   ratesSet: boolean = false;
   interval: any;
-  intervalNoData: any;
   counter = 1;
   quantityOfBooks: number = 0;
   authorsD: String[] = [];
@@ -39,6 +39,7 @@ export class RecService {
   k3 = 0.3;
   k4 = 0.2;
   recsSorted:EventEmitter<boolean> = new EventEmitter<boolean>
+  arr: String[] = [];
   getUsersData(id: String, score: Number){
     return this.http.get<{'favourite': string[], 'dropped': string[]}>(`http://localhost:3000/users/${id}/${score}`);
   }
@@ -115,9 +116,7 @@ export class RecService {
       console.log('scoredBooks')
       console.log(this.scoredBooks)
       if(this.scoredBooks.length < 10){
-        console.log('No data recs')
-        this.scoredBooks = [];
-        this.noDataRecs();
+        this.noUserRecService.addToTen(this.scoredBooks, this.arr)
       } else{
         this.user.user_books_recommendations = [];
         this.scoredBooks.forEach( el =>{
@@ -211,6 +210,7 @@ export class RecService {
   }
   clearAll(){
   this.dropped = [];
+  this.arr = [];
   this.favourite = [];
   this.allBooks = [];
   this.rates = [];
@@ -238,74 +238,10 @@ export class RecService {
       })
       this.getFavWorstBooks(user);
       this.interval = setInterval(this.timeOut.bind(this), 1000)
-    } else{
-      this.scoredBooks = [];
-      this.noDataRecs()
     }
 
   }
-  noDataRecs(){
-    console.log('No data recs here')
-    this.booksService.getAllBooks().subscribe( data =>{
-      data.forEach( (el) => {
-        if(el.book_average_rate > 3){
-          this.counter+=3
-          this.scoredBooks.push({book: el, score: el.book_average_rate})
-          this.commentService.getCommentByBookId(el._id).subscribe( e => {
-            if(e.length > 0){
-              let book = this.scoredBooks.filter( elem => elem.book._id == e[0].comment_book)[0];
-              book.score+=e.length;
-            }
-            this.counter--;
-          })
-          this.reviewService.getReviewByBookId(el._id).subscribe( e => {
-            if(e.length > 0){
-              let book = this.scoredBooks.filter( elem => elem.book._id == e[0].review_book)[0];
-              book.score+=e.length;
-            }
-            this.counter--;
-          })
-          this.quoteService.getQuoteByBookId(el._id).subscribe( e => {
-            if(e.length > 0){
-              let book = this.scoredBooks.filter( elem => elem.book._id == e[0].quote_book)[0];
-              book.score+=e.length;
-            }
-            this.counter--;
-          })
-        }
 
-      })
-      this.counter--;
-      this.intervalNoData = setInterval(this.noDataTimeOut.bind(this), 1000)
-
-    })
-
-  }
-  noDataTimeOut(){
-    console.log('No data timeout')
-    console.log('beginning')
-    if(!this.counter){
-      console.log('middle1')
-      this.scoredBooks.sort(this.compareScores);
-      console.log(this.scoredBooks)
-      if(this.user){
-        this.scoredBooks.forEach( el =>{
-          this.user?.user_books_recommendations.push(el.book._id)
-        })
-        this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
-          this.logInService.user = this.user;
-          localStorage.setItem('userObject', JSON.stringify(this.user));
-          console.log('middle2')
-          this.recsSorted.emit(true);
-        })
-
-      }
-      console.log('end')
-      clearInterval(this.intervalNoData);
-
-    }
-
-  }
   //витягує з сервера книги та оцінки за айдішниками
   getFavWorstBooks(user:User){
     let dropped_books = user.user_books_dropped;
@@ -325,12 +261,12 @@ export class RecService {
       });
       this.quantityOfBooks = len.size;
       this.booksService.getAllBooks().subscribe( data => {
-        let arr: String[] = [...dropped_books, ...favourite_books, ...saved_books, ...read_books];
+        this.arr = [...dropped_books, ...favourite_books, ...saved_books, ...read_books];
         for (let r of this.rates){
-          arr.push(r.rate_book);
+          this.arr.push(r.rate_book);
         }
         for (let el of data){
-          if(arr.includes(el._id)){
+          if(this.arr.includes(el._id)){
             continue;
           } else {
             this.allBooks.push(el);
@@ -377,7 +313,6 @@ export class RecService {
   }
 
   constructor(public rateService: RateService, public booksService: BooksService,
-    public http: HttpClient, public quoteService: QuoteService, public reviewService: ReviewService,
-    public commentService: CommentService, public userService: UserService,
-  public logInService: LogInService) { }
+    public http: HttpClient, public userService:UserService,
+    public logInService: LogInService, public noUserRecService: NoUserRecService) { }
 }
