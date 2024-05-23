@@ -114,7 +114,7 @@ export class RecService {
     if(this.user){
       console.log('scoredBooks')
       console.log(this.scoredBooks)
-      if(this.user.user_books_recommendations.length < 10){
+      if(this.scoredBooks.length < 10){
         console.log('No data recs')
         this.scoredBooks = [];
         this.noDataRecs();
