@@ -1,13 +1,10 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { User } from '../schemas/user';
 import { RateService } from './rate.service';
 import { Rate } from '../schemas/rate';
 import { BooksService } from './books.service';
 import { Book } from '../schemas/book';
 import { HttpClient } from '@angular/common/http';
-import { QuoteService } from './quote.service';
-import { ReviewService } from './review.service';
-import { CommentService } from './comment.service';
 import { UserService } from './user.service';
 import { LogInService } from './log-in.service';
 import { NoUserRecService } from './no-user-rec.service';
@@ -15,7 +12,7 @@ import { NoUserRecService } from './no-user-rec.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RecService {
+export class RecService{
   dropped:Book[] = [];
   favourite:Book[] = [];
   allBooks: Book[] = [];
@@ -116,11 +113,11 @@ export class RecService {
       console.log('scoredBooks')
       console.log(this.scoredBooks)
       if(this.scoredBooks.length < 10){
-        this.noUserRecService.addToTen(this.scoredBooks, this.arr)
+        console.log('Add to ten')
+        this.noUserRecService.addToTen(this.scoredBooks, this.arr, this.user)
       } else{
         this.user.user_books_recommendations = [];
         this.scoredBooks.forEach( el =>{
-          console.log(el)
           this.user?.user_books_recommendations.push(el.book._id);
         })
         this.userService.patchUser(this.user, this.user._id).subscribe( data =>{
@@ -138,9 +135,11 @@ export class RecService {
     //////////////authors
     let kA = this.k1;
     let scoreA = 0;
+    console.log('Author! ', this.authorsF)
     for (let a of book.book_authors){
       if(this.authorsF.includes(a.toLocaleLowerCase())){
         scoreA = scoreA + 10;
+
       }
       if(this.authorsD.includes(a.toLocaleLowerCase())){
         scoreA = scoreA - 10;

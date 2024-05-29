@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="openForm">
   <div>Set up your recommendation algorithm!</div>
   <div>State your agreement with the statement in 0 to 5 range, where 0 means not at all and 5 - strongly agree</div>
   <div class="item-container">
@@ -17,4 +17,11 @@
     <label>I would like to get user-defined recommendation</label>
     <input #form #user type="number" min="0" max="5" (input)="validateInput(user)" value="0">
   </div>
+  <button ponterD opacityD (click)="submit()">Submit</button>
+
 </div>
+<div class="btn-container">
+  <button *ngIf="!openForm" (click)="openForm=!openForm" ponterD opacityD>Set up recommendations</button>
+  <button *ngIf="openForm" (click)="openForm=!openForm" ponterD opacityD>Close</button>
+</div>
+

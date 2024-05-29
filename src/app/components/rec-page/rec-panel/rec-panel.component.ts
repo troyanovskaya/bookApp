@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { RecService } from 'src/app/services/rec.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { RecService } from 'src/app/services/rec.service';
 export class RecPanelComponent implements AfterViewInit{
   @ViewChildren('form') inputs?: QueryList<ElementRef>;
   @Output() onKChange:EventEmitter<number[]> = new EventEmitter<number[]>;
+  openForm:boolean = false;
   k:number[] = [];
   constructor(public recService: RecService){}
   ngAfterViewInit(): void {
@@ -48,6 +49,9 @@ export class RecPanelComponent implements AfterViewInit{
     this.getInput();
     let sum = this.sumK();
     this.normolizeK(sum);
+  }
+  submit(){
     this.onKChange.emit(this.k);
+    this.openForm = false;
   }
 }

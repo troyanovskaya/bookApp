@@ -1,6 +1,6 @@
-<app-rec-panel (onKChange)="getRecs($event)"></app-rec-panel>
+<div class="text">Book recommendations for {{logInService.user?.user_login}}</div>
+<app-rec-panel (onKChange)="getRecs($event)" ></app-rec-panel>
 <div class="container" *ngIf="logInService.user">
-  <div class="text">Book recommendations for {{logInService.user.user_login}}</div>
   <ng-container *ngFor="let book of recArray; let i = index">
     <app-book *ngIf="i < bookShown" [book]="book.book"></app-book>
   </ng-container>
