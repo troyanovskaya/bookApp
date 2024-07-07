@@ -1,13 +1,13 @@
 <div class="quote-container">
   <div class="quote-text">
     <ng-container *ngFor="let t of quote?.quote_text">
-      <div class="quote">{{t}}</div>
+      <p class="quote">{{t}}</p>
     </ng-container>
   </div>
 
-  <div class="quote-character right">{{quote?.quote_character}}</div>
-  <div class="quote-user right">by {{quote?.quote_user_login}}</div>
-  <div class="quote-date right">{{quote?.quote_date}}</div>
+  <p class="quote-character right">{{quote?.quote_character}}</p>
+  <p class="quote-user right">by {{quote?.quote_user_login}}</p>
+  <p class="quote-date right">{{quote?.quote_date}}</p>
   <div class="oper">
     <div (click)="deleteQuote()" class="delete" underlineD pointerD *ngIf="belongToUser">Delete</div>
   </div>

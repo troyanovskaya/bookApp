@@ -70,7 +70,9 @@ export class RateComponent implements AfterViewChecked {
   id: String = '';
   @Input() book?:Book;
   set:boolean = false;
+  highlight = 0; // Нове поле для підсвітки малих блоків
   @ViewChildren('fill') stars!: QueryList<any>;
+  @ViewChild('container', { static: true }) container!: ElementRef;
   sendRate(score: Number){
     let user = this.logInService.user;
     if(user){
@@ -97,7 +99,27 @@ export class RateComponent implements AfterViewChecked {
       alert('Sign in to rate the book!')
     }
   }
+  onMouseMove(event: MouseEvent) {
+    const containerLeft = this.container.nativeElement.offsetLeft;
+    const mouseX = event.clientX - containerLeft;
 
+    if (mouseX < 30) {
+      this.highlight = 1;
+    } else if (mouseX < 60) {
+      this.highlight = 2;
+    } else if (mouseX < 90) {
+      this.highlight = 3;
+    } else if (mouseX < 120) {
+      this.highlight = 4;
+    } else if (mouseX < 150) {
+      this.highlight = 5;
+    } else {
+      this.highlight = 0;
+    }
+  }
+  onMouseLeave(){
+    this.highlight = 0;
+  }
 
 
 }

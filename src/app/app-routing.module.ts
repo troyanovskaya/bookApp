@@ -11,7 +11,7 @@ import { AuthorPageComponent } from './components/author-page/author-page.compon
 import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-rec-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: 'home', component: HomePageComponent },
   { path: 'books/:id', component: BookPageComponent },
   { path: 'books/:id/reviews', component: BookReviewPageComponent },
   { path: 'books/:id/quotes', component: BookQuotePageComponent },
@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'bookRecs', component: RecPageComponent },
   { path: 'noUserbookRecs', component: NoUserRecPageComponent},
   { path: 'authors/:name', component: AuthorPageComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full'}
+  { path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

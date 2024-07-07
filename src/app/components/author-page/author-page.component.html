@@ -1,5 +1,5 @@
 <div class="container" *ngIf="author; else noAuthor">
-  <div class="name">{{author.author_name}}</div>
+  <p class="name">{{author.author_name}}</p>
   <div class="img-container">
     <img [src]="author.author_img" [alt]="author.author_img">
     <ng-container *ngFor="let par of author.author_biography">
@@ -14,12 +14,12 @@
       <app-book *ngFor="let book of bs.books" [book]="book"></app-book>
     </ng-container>
     <ng-container *ngFor="let book of books">
-      <div class="series"> No series </div>
+      <p class="series"> No series </p>
       <app-book  [book]="book"></app-book>
     </ng-container>
 
   </div>
 </div>
 <ng-template #noAuthor>
-  <div class="no-author">Sorry, this author has not been uploaded yet</div>
+  <p class="no-author">Sorry, this author has not been uploaded yet</p>
 </ng-template>

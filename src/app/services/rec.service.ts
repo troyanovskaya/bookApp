@@ -184,7 +184,7 @@ export class RecService{
     }
     ////////users
     let kU = this.k4;
-    let scoreU = 5;
+    let scoreU = 0;
     if(this.usersRecs.dropped.includes(book._id.toString())){
       scoreU = 0;
     } else if(this.usersRecs.favourite.includes(book._id.toString())){
@@ -194,13 +194,9 @@ export class RecService{
   }
   // перевіряє, чи всі книги додались до масивів, коли всі книги додано викликає getSearchedValues
   timeOut(){
-    console.log('qqq')
     if(this.ratesSet){
       let len = this.dropped.length + this.favourite.length;
-      console.log(len)
-      console.log(this.quantityOfBooks)
       if(this.quantityOfBooks == len && this.usersRecsSet){
-        console.log('timeout')
         clearInterval(this.interval);
         this.getSearchedValues();
       }

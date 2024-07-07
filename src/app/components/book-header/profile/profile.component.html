@@ -6,7 +6,7 @@
   <div (click)="onProfileClick()" (mouseleave)="visible=false" class="user-profile-wrapper">
     <img class="user-icon" [src]="logInService.user?.user_img"
      alt="user icon" pointerD>
-    <div>Welcome, {{logInService.user?.user_login}}!</div>
+    <p>Welcome, {{logInService.user?.user_login}}!</p>
       <app-dropdown [visible]="visible" ></app-dropdown>
 </div>
 </ng-template>

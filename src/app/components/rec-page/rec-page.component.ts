@@ -26,12 +26,13 @@ export class RecPageComponent implements OnInit, OnDestroy, DoCheck{
   }
   showRecs(){
     this.recArray = [];
+    let array: {book:Book, num:number}[] = [];
     if(this.logInService.user){
       this.logInService.user.user_books_recommendations.forEach( (book, index, arr) =>{
         this.booksService.getBook(book).subscribe( data =>{
-          this.recArray.push({book:data, num:index});
-          if(arr.length==this.recArray.length){
-            this.recArray.sort(this.compareNumbers);
+          array.push({book:data, num:index});
+          if(arr.length==array.length){
+            this.recArray = array.sort(this.compareNumbers);
           }
         })
       })

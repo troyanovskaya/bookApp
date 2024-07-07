@@ -28,12 +28,6 @@ loadFilterService(){
   }
 }
 ngOnInit(){
-// this.bookService.getAllBooks().subscribe( data => {
-//   console.log('!!!!')
-//   this.books = data;
-//   this.filteredBooks = data
-// });
-// console.log('!!!!')
 }
 filterBooksBy(bykey:string = 'all'){
   if(this.val){
