@@ -12,9 +12,13 @@ import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-re
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
-  { path: 'books/:id', component: BookPageComponent },
-  { path: 'books/:id/reviews', component: BookReviewPageComponent },
-  { path: 'books/:id/quotes', component: BookQuotePageComponent },
+  { path: 'books/:id', component: BookPageComponent},
+  { path: 'books/:id', children: [
+    { path: 'reviews', component: BookReviewPageComponent },
+    { path: 'quotes', component: BookQuotePageComponent }
+  ] },
+  // { path: 'books/:id/reviews', component: BookReviewPageComponent },
+  // { path: 'books/:id/quotes', component: BookQuotePageComponent },
   { path: 'bookList', component: BookListsPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'bookRecs', component: RecPageComponent },
