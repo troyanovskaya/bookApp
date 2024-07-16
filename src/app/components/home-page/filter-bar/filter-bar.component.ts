@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { SearchBy } from 'src/app/schemas/searchBy';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { BooksService } from 'src/app/services/books.service';
 import { FilterService } from 'src/app/services/filter.service';
 
@@ -11,11 +10,8 @@ import { FilterService } from 'src/app/services/filter.service';
 export class FilterBarComponent {
 chosen = 'all';
 onclick(property:string){
-  this.filterService.filterBooksBy(property);
   this.chosen = property;
-  //this.filterService.clearSearchChosen();
-  //this.filterService.searchChosen[property as keyof {all:boolean, byName:boolean, byAuthor:boolean, byDescription:boolean, byKeyWords:boolean}] = true;
-  //this.booksService.filterBooks();
+  this.filterService.onGroupValueChange(property);
 }
 constructor(public filterService: FilterService, public booksService: BooksService){}
 }

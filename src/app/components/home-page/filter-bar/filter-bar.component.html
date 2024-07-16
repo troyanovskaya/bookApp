@@ -1,24 +1,24 @@
 <div *ngIf="filterService.val!==''" class="container">
   <div (click)="onclick('all')"
   [ngClass]="{'chosen': chosen === 'all'}">
-    {{"All("+ filterService.searchChosen.all+")"}}
+    {{"All("+ filterService.results['all'].length+")"}}
   </div>
-  <div (click)="onclick('name')"
-  [ngClass]="{'chosen': chosen === 'name'}">
-    {{"By name("+ filterService.searchChosen.byName+")"}}
+  <div (click)="onclick('book_name')"
+  [ngClass]="{'chosen': chosen === 'book_name'}">
+    {{"By name("+ filterService.results['byName'].length+")"}}
   </div>
-  <div (click)="onclick('authors')"
-  [ngClass]="{'chosen': chosen === 'authors'}">
-    {{"By author("+ filterService.searchChosen.byAuthor +")"}}
+  <div (click)="onclick('book_authors')"
+  [ngClass]="{'chosen': chosen === 'book_authors'}">
+    {{"By author("+ filterService.results['byAuthor'].length +")"}}
   </div>
-  <div (click)="onclick('description')"
-  [ngClass]="{'chosen': chosen === 'description'}">
-    {{"By description("+ filterService.searchChosen.byDescription+")"}}
+  <div (click)="onclick('book_description')"
+  [ngClass]="{'chosen': chosen === 'book_description'}">
+    {{"By description("+ filterService.results['byDescription'].length+")"}}
   </div>
-  <div (click)="onclick('keywords')" [ngClass]="{'chosen': chosen === 'keywords'}">
-    {{"By keywords("+ filterService.searchChosen.byKeyWords +")"}}
+  <div (click)="onclick('book_keywords')" [ngClass]="{'chosen': chosen === 'book_keywords'}">
+    {{"By keywords("+ filterService.results['byKeyWords'].length +")"}}
   </div>
-  <div (click)="onclick('genres')" [ngClass]="{'chosen': chosen === 'genres'}">
-    {{"By genres("+ filterService.searchChosen.byGenres +")"}}
+  <div (click)="onclick('book_genres')" [ngClass]="{'chosen': chosen === 'book_genres'}">
+    {{"By genres("+ filterService.results['byGenres'].length +")"}}
   </div>
 </div>

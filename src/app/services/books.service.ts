@@ -30,47 +30,10 @@ books:Book[] = [];
     // this.filterService.searchByProperties.byDescription = booksByDesription.length;
     // this.filterService.searchByProperties.byKeyWords = booksByKeywords.length;
   }
-  filterBooks(){
-    // this.filteredBooks = [];
-    // for(let book of this.books){
-    //   this.clearSearchProperty(book);
-    //   let str = this.filterService.searchString;
-    //   book.search.name = book.name.toLowerCase().includes(str) ?  true : false;
-    //   book.search.author = book.author.toLowerCase().includes(str) ?  true : false;
-    //   let descArr = book.description.filter( el => el.toLowerCase().includes(str));
-    //   book.search.description = descArr.length > 0 ? true : false;
-    //   let keywordsArr = book.keywords.filter( el => el.toLowerCase().includes(str));
-    //   book.search.keywords = keywordsArr.length > 0 ? true : false;
-    //   this.updateSearchResults();
-    //   if( str === '' ){
-    //     this.filteredBooks.push(book);
-    //   } else if (this.filterService.searchChosen.all){
-    //     if (book.search.name || book.search.author || book.search.description || book.search.keywords){
-    //       this.filteredBooks.push(book);
-    //     }
-    //   } else if(this.filterService.searchChosen.byName){
-    //     if (book.search.name){
-    //       this.filteredBooks.push(book);
-    //     }
-    //   } else if(this.filterService.searchChosen.byAuthor){
-    //     if (book.search.author){
-    //       this.filteredBooks.push(book);
-    //     }
-    //   } else if(this.filterService.searchChosen.byDescription){
-    //     if (book.search.description){
-    //       this.filteredBooks.push(book);
-    //     }
-    //   } else if(this.filterService.searchChosen.byKeyWords){
-    //     if (book.search.keywords){
-    //       this.filteredBooks.push(book);
-    //     }
-    //   }
-    // }
-
-  }
   constructor(public http: HttpClient, public logInService: LogInService) { };
-  getAllBooks(){
-    return this.http.get<Book[]>('http://localhost:3000/books');
+  getAllBooks(queryString: string =''){
+    queryString = queryString.replace('*', '');
+    return this.http.get<Book[]>(`http://localhost:3000/books${queryString}`);
   }
   getBook(id:String){
     return this.http.get<Book>(`http://localhost:3000/books/${id}`);
