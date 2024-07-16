@@ -1,6 +1,6 @@
 <div class="container">
-  <input class="input" type="text" (input)="onInputChange()" routerLink="/" [(ngModel)]="searchVal" placeholder="Search...">
-  <button  routerLink="/" class="button">
+  <input class="input" type="text" (keyup.enter)="onInputChange()" routerLink="/" [(ngModel)]="searchVal" placeholder="Search...">
+  <button (click)="onInputChange()"  routerLink="/" class="button">
     <img pointerD class="search-img" src="assets/search.png" alt="Search img">
   </button>
 </div>
