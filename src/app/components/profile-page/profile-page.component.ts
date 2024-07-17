@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/schemas/user';
 import { LogInService } from 'src/app/services/log-in.service';
-import {Router} from "@angular/router"
+import {ActivatedRoute, Router} from "@angular/router"
 
 @Component({
   selector: 'app-profile-page',
@@ -15,6 +15,7 @@ export class ProfilePageComponent implements OnInit{
     if(this.logInService.user){
       this.user = this.logInService.user;
     }
+    
   }
   logOut(){
     this.logInService.logOut();

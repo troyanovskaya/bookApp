@@ -1,4 +1,4 @@
 <div pointerD *ngIf="visible" class="dropdown">
   <div pointerD class="list-item" routerLink="/profile">Profile</div>
-  <div pointerD (click)="signOut()" class="list-item">Sign out</div>
+  <div pointerD  (click)="signOut()" routerLink="/" [queryParams]='{logout: true}' class="list-item">Sign out</div>
 </div>

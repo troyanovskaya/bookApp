@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/schemas/book';
 import { BooksService } from 'src/app/services/books.service';
 import { LogInService } from 'src/app/services/log-in.service';
@@ -12,7 +13,8 @@ import { RecService } from 'src/app/services/rec.service';
 })
 export class RecPageComponent implements OnInit, OnDestroy, DoCheck{
   constructor(public recService: RecService, public logInService: LogInService,
-    public booksService: BooksService, public noUserRecs: NoUserRecService){}
+    public booksService: BooksService, public noUserRecs: NoUserRecService,
+    private route: ActivatedRoute, private router: Router){}
   ngDoCheck(): void {
   }
   ngOnDestroy(): void {
@@ -65,8 +67,12 @@ export class RecPageComponent implements OnInit, OnDestroy, DoCheck{
       console.log('Inside')
       this.showRecs()})
     this.noUserRecs.userSet.subscribe( data => {
-      console.log('Inside1')
       this.showRecs()})
+    this.route.queryParams.subscribe( params => {
+        if(Boolean(params['logout'])){
+          this.router.navigate(['/'])
+        }
+      })
   }
   showMoreBooks(){
     console.log(this.bookShown)

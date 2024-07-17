@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/schemas/book';
 import { BooksService } from 'src/app/services/books.service';
 import { LogInService } from 'src/app/services/log-in.service';
@@ -56,7 +57,8 @@ export class BookListsPageComponent implements OnInit{
   showMoreBooks(){
     this.bookShown = this.bookShown + 10;
   }
-  constructor(public logInService: LogInService, public booksService: BooksService){}
+  constructor(public logInService: LogInService, public booksService: BooksService,
+    private route: ActivatedRoute, private router: Router){}
   ngOnInit(): void {
     if(this.logInService.user){
       let saved =  this.logInService.user.user_books_saved;
@@ -66,6 +68,12 @@ export class BookListsPageComponent implements OnInit{
         })
       }
     }
+    this.route.queryParams.subscribe( params => {
+      if(Boolean(params['logout'])){
+        this.router.navigate(['/'])
+      }
+    })
+
 
   }
 
