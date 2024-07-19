@@ -19,7 +19,7 @@ export class LogInService {
     password = password.trim();
     email = email.trim();
     return this.http.get<User>
-    (`http://localhost:3000/users/?password=${password}&email=${email}`,
+    (`https://bookappback.onrender.com/users/?password=${password}&email=${email}`,
      { observe: 'response' }).pipe(
       catchError(this.handleError)
     );
@@ -38,7 +38,7 @@ export class LogInService {
   }
   registerNewUser(password: String, login: String, email: String){
     let user = {user_login: login, user_email: email, user_password: password};
-    return this.http.post<User>('http://localhost:3000/users', user).pipe(catchError(this.handleError));
+    return this.http.post<User>('https://bookappback.onrender.com/users', user).pipe(catchError(this.handleError));
   }
   constructor(public http: HttpClient) { }
 

@@ -7,16 +7,16 @@ import { Comm } from '../schemas/comment';
 })
 export class CommentService {
   postComment(comment: any){
-    return this.http.post<Comm>('http://localhost:3000/comments', comment);
+    return this.http.post<Comm>('https://bookappback.onrender.com/comments', comment);
   }
   deleteComment(id: String){
-    return this.http.delete<Comm>(`http://localhost:3000/comments/${id}`);
+    return this.http.delete<Comm>(`https://bookappback.onrender.com/comments/${id}`);
   }
   editComment(comm: Comm){
-    return this.http.patch<Comm>(`http://localhost:3000/comments/${comm._id}`, comm);
+    return this.http.patch<Comm>(`https://bookappback.onrender.com/comments/${comm._id}`, comm);
   }
   getCommentByBookId(id: String){
-    return this.http.get<Comm[]>(`http://localhost:3000/comments/books/${id}`);
+    return this.http.get<Comm[]>(`https://bookappback.onrender.com/comments/books/${id}`);
   }
   constructor(public http: HttpClient) { }
 }

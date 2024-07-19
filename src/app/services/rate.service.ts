@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RateService {
   postRate(rate: any){
-    return this.http.post<number>('http://localhost:3000/rates', rate);
+    return this.http.post<number>('https://bookappback.onrender.com/rates', rate);
   }
   getRateByBookId(id: String){
-    return this.http.get<number>(`http://localhost:3000/rates/books/${id}`);
+    return this.http.get<number>(`https://bookappback.onrender.com/rates/books/${id}`);
   }
   getRateByUserId(id: String){
-    return this.http.get<Rate[]>(`http://localhost:3000/rates/users/${id}`);
+    return this.http.get<Rate[]>(`https://bookappback.onrender.com/rates/users/${id}`);
   }
   constructor(public http: HttpClient) { }
 }

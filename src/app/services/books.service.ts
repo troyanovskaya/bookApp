@@ -33,15 +33,15 @@ books:Book[] = [];
   constructor(public http: HttpClient, public logInService: LogInService) { };
   getAllBooks(queryString: string =''){
     queryString = queryString.replace('*', '');
-    return this.http.get<Book[]>(`http://localhost:3000/books${queryString}`);
+    return this.http.get<Book[]>(`https://bookappback.onrender.com/books${queryString}`);
   }
   getBook(id:String){
-    return this.http.get<Book>(`http://localhost:3000/books/${id}`);
+    return this.http.get<Book>(`https://bookappback.onrender.com/books/${id}`);
   }
   patchBook(update: any, id: String){
-    return this.http.patch<Book>(`http://localhost:3000/books/${id}`, update)
+    return this.http.patch<Book>(`https://bookappback.onrender.com/books/${id}`, update)
   }
   patchBookArray(newElement: any, property: String, id: String){
-    return this.http.patch<Book>(`http://localhost:3000/books/${id}/${property}`, newElement);
+    return this.http.patch<Book>(`https://bookappback.onrender.com/books/${id}/${property}`, newElement);
   }
 }

@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuoteService {
   postQuote(quote: any){
-    return this.http.post<Quote>('http://localhost:3000/quotes', quote);
+    return this.http.post<Quote>('https://bookappback.onrender.com/quotes', quote);
   }
   getQuoteByBookId(id: String){
-    return this.http.get<Quote[]>(`http://localhost:3000/quotes/books/${id}`);
+    return this.http.get<Quote[]>(`https://bookappback.onrender.com/quotes/books/${id}`);
   }
   deleteQuote(id: String){
-    return this.http.delete<Quote>(`http://localhost:3000/quotes/${id}`);
+    return this.http.delete<Quote>(`https://bookappback.onrender.com/quotes/${id}`);
   }
   constructor(public http: HttpClient) { }
 }

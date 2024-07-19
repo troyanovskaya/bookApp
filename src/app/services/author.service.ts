@@ -9,6 +9,6 @@ export class AuthorService {
 
   constructor(public http: HttpClient){}
   getAuthorByName(name: string){
-    return this.http.get<Author[]>(`http://localhost:3000/authors/${name}`);
+    return this.http.get<Author[]>(`https://bookappback.onrender.com/authors/${name}`);
   }
 }

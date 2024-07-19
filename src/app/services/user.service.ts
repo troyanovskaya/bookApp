@@ -7,7 +7,7 @@ import { User } from '../schemas/user';
 })
 export class UserService {
   patchUser(update: any, id: String){
-    return this.http.patch<User>(`http://localhost:3000/users/${id}`, update);
+    return this.http.patch<User>(`https://bookappback.onrender.com/users/${id}`, update);
   }
   constructor(public http: HttpClient) { }
 }
