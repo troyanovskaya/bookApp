@@ -1,12 +1,12 @@
 <div *ngIf="!logInService.user; else userProfile" class="wrapper" (click)="visibilityService.showSignForm = true">
-    <button (click)="dropdownFalse()" class="sign icon">Sign in</button>
+    <button *ngIf="screenWidth>750" (click)="dropdownFalse()" class="sign icon">Sign in</button>
     <img class="sign-img icon" src="assets/sign-in.png" alt="sign in">
 </div>
 <ng-template #userProfile >
   <div (click)="onProfileClick()" (mouseleave)="visible=false" class="user-profile-wrapper">
-    <img class="user-icon" [src]="logInService.user?.user_img"
+    <img  class="user-icon" [src]="logInService.user?.user_img"
      alt="user icon" pointerD>
-    <p>Welcome, {{logInService.user?.user_login}}!</p>
+    <p *ngIf="screenWidth>815">Welcome, {{logInService.user?.user_login}}!</p>
       <app-dropdown [visible]="visible" ></app-dropdown>
 </div>
 </ng-template>

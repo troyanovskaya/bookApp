@@ -1,0 +1,9 @@
+<div class=container (mouseleave)="visible=false">
+  <img  src="assets/menu.png" (click)="changeVisibility()" alt="menu">
+  <div (mouseleave)="visible=false" pointerD *ngIf="visible" class="dropdown">
+    <a pointerD underlineD routerLink="/home" class="list-item" (click)="changeVisibility()">Home</a>
+    <a pointerD underlineD routerLink="/bookList" class="list-item" (click)="changeVisibility()">Library</a>
+    <a pointerD underlineD routerLink="/bookRecs" class="list-item" (click)="changeVisibility()">For me</a>
+    <a pointerD underlineD routerLink="/profile" class="list-item" (click)="changeVisibility()">Profile</a>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Book } from 'src/app/schemas/book';
 import { FilterService } from 'src/app/services/filter.service';
 import { VisibilityService } from 'src/app/services/visibility.service';
@@ -9,6 +9,7 @@ import { VisibilityService } from 'src/app/services/visibility.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  public screenWidth: any;
   searchVal = '';
   searchGroup = 'all';
   //groups: string[] = ['all', 'byName', 'byAuthor', 'byDescription', 'byKeyWords', 'byGenres']
@@ -40,6 +41,7 @@ export class HomePageComponent implements OnInit {
   }
   constructor(public filterService: FilterService){}
   ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
     this.filterService.searchVal.subscribe(data => {
       this.searchVal = data;
       this.bookShown = 10;
@@ -50,5 +52,12 @@ export class HomePageComponent implements OnInit {
       this.changeGroup(data);
     });
     this.filterService.filter();
+  }
+
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.screenWidth = window.innerWidth;
   }
 }

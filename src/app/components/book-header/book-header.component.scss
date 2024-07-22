@@ -1,7 +1,7 @@
 .wrapper{
   background-color: #0b193c;
   width: 100%;
-  height: 70px;
+  min-height: 70px;
   display: flex;
   align-items: center;
   position: sticky;
@@ -16,8 +16,28 @@
   gap:20px;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   margin: 0px 20px;
 }
+@media (width<=815px){
+  .wraper{
+    gap:0px;
+  }
+}
+@media (width<=530px){
+  .content{
+    margin:0px;
+  }
+}
+@media (width<=414px){
+  .content{
+    gap:5px;
+  }
+  .wrapper{
+    gap:5px;
+  }
+}
+
 
 
 

@@ -1,7 +1,7 @@
 .wrapper{
   background-color: white;
   padding:20px;
-  width:600px;
+  max-width:600px;
   min-height:200px;
   border-radius:10px;
   border: 0.5px solid grey;
@@ -46,6 +46,19 @@ button{
 }
 app-btn-read{
   margin:5px;
+}
+@media (width<=545px){
+  .img-container{
+    width: 100%
+  }
+}
+@media (width<=350px){
+  app-rate{
+    display:none;
+  }
+  .wrapper{
+    padding:5px;
+  }
 }
 
 

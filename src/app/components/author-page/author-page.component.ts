@@ -36,8 +36,11 @@ export class AuthorPageComponent implements OnInit{
                 this.seriesBooks.forEach (el =>{
                   if(el.series == book.book_series[0]){
                     el.books.push(book);
-                    el.books.sort(this.compareScores)
-                  } else{
+                    el.books.sort(this.compareScores);
+                  } else if (el.series == book.book_series[1]){
+                    el.books.push(book);
+                    el.books.sort(this.compareScores);
+                  }else{
                     this.books.push(book);
                   }
                 })

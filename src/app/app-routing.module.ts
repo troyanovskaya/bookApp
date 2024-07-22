@@ -9,6 +9,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { RecPageComponent } from './components/rec-page/rec-page.component';
 import { AuthorPageComponent } from './components/author-page/author-page.component';
 import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-rec-page.component';
+import { CanActivateGuard } from './guards/can-activate.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -19,9 +20,9 @@ const routes: Routes = [
   ] },
   // { path: 'books/:id/reviews', component: BookReviewPageComponent },
   // { path: 'books/:id/quotes', component: BookQuotePageComponent },
-  { path: 'bookList', component: BookListsPageComponent },
-  { path: 'profile', component: ProfilePageComponent },
-  { path: 'bookRecs', component: RecPageComponent },
+  { path: 'bookList', component: BookListsPageComponent, canActivate: [CanActivateGuard] },
+  { path: 'profile', component: ProfilePageComponent, canActivate: [CanActivateGuard] },
+  { path: 'bookRecs', component: RecPageComponent, canActivate: [CanActivateGuard] },
   { path: 'noUserbookRecs', component: NoUserRecPageComponent},
   { path: 'authors/:name', component: AuthorPageComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full'}

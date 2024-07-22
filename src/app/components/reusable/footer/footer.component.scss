@@ -27,3 +27,13 @@ footer{
   left: 50%;
   transform: translate(-50%);
 }
+@media (width<=680px){
+  .text{
+    display: none;
+  }
+}
+@media (width<=430px){
+  .copyrights{
+    display: none;
+  }
+}

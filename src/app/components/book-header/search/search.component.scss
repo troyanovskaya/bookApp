@@ -5,7 +5,6 @@
   align-items:center;
   position: relative;
   width: 100%;
-  top: 10px;
 }
 .search-img{
   margin-top: 3px;
@@ -33,4 +32,21 @@ input[type=text] {
 
 input[type=text]:focus {
   width: 160px;
+}
+
+@media (width<=815px){
+  input[type=text] {
+    width: 190px;
+  }
+  input[type=text]:focus {
+    width: 190px;
+  }
+}
+@media (width<=445px){
+  input[type=text] {
+    width: 100px;
+  }
+  input[type=text]:focus {
+    width: 100px;
+  }
 }

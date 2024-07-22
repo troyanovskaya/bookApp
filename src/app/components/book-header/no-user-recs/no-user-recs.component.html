@@ -1,1 +1,4 @@
-<a underlineD pointerD routerLink="/noUserbookRecs">Recommended books</a>
+<a *ngIf="screenWidth>750; else recs" underlineD pointerD routerLink="/noUserbookRecs">Recommended books</a>
+<ng-template #recs>
+  <a underlineD pointerD routerLink="/noUserbookRecs">Recs</a>
+</ng-template>

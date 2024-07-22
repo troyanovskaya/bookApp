@@ -1,22 +1,44 @@
+.container{
+  position: relative;
+}
+img{
+  width: 30px;
+  height: 30px;
+}
 .dropdown{
+  display: flex;
+  flex-direction: column;
   color:black;
   background-color: white;
   position: absolute;
   z-index: 3;
   width: 80px;
-  bottom: -50px;
+  bottom: -115px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   left: 50%;
   transform: translate(-50%, 0);
 }
 .list-item{
+  color: black;
   margin:5px;
 }
 .list-item:hover{
   background-color: #cfcdcd;
 }
+.menu{
+  color: white;
+}
+.menu:hover{
+  font-weight: bold;
+}
 @media (width<=414px){
   .dropdown{
-    left: 10px;
+    left: 30px;
+  }
+}
+@media (width<=300px){
+  img{
+    width: 25px;
+    height: 25px;
   }
 }

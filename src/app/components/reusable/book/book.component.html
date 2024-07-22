@@ -15,12 +15,12 @@
       <div>
         Author: <span underlineD pointerD routerLink="/authors/{{author}}"
                   *ngFor="let author of this.book?.book_authors">
-                  {{author}}
+                  {{author }} 
                 </span>
       </div>
       <div *ngIf="book?.book_series?.length!== 0">
         Series:
-        <span pointerD underlineD *ngFor="let s of book?.book_series">{{s}}</span>
+        <span pointerD underlineD *ngFor="let s of book?.book_series">{{s }} </span>
       </div>
       <div>Year: {{this.book?.book_edition_year}}</div>
       <app-rate [rate]="book?.book_average_rate || 0" [book]="book"></app-rate>
