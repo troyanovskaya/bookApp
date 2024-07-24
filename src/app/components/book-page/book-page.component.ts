@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Comm } from 'src/app/schemas/comment';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/schemas/book';
@@ -35,6 +35,7 @@ export class BookPageComponent implements OnInit {
         this.comments = comments
       });
     });
+    this.screenWidth = window.innerWidth;
   }
   changeVisibility(event: boolean){
     this.showCommentField = event;
@@ -79,6 +80,11 @@ export class BookPageComponent implements OnInit {
   }
   close(){
     this.editComment = false;
+  }
+  public screenWidth: any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.screenWidth = window.innerWidth;
   }
 
 }

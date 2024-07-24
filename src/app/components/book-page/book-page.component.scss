@@ -20,6 +20,7 @@ img{
 }
 .description-container{
   padding:30px;
+  box-sizing: border-box;
 }
 *{
   font-size: 18px;
@@ -64,5 +65,29 @@ textarea{
 }
 app-btn-add{
   margin-bottom: 20px;
+}
+
+@media (width<=600px){
+  .img-container{
+    padding:0px;
+    margin:0px;
+    width:100%;
+    box-sizing: border-box;
+  }
+  .comments-container{
+    margin: 5px;
+    justify-content:baseline;
+    align-items: normal;
+  }
+}
+@media (width<=315px){
+  .description-container{
+    padding:5px;
+  }
+}
+@media (width<=280px){
+  img{
+    width: 100%;
+  }
 }
 

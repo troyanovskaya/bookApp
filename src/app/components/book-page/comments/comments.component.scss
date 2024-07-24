@@ -38,3 +38,13 @@ p{
 .edit{
   color: rgb(2, 104, 2);
 }
+@media (width<=600px){
+  .container{
+    box-sizing: border-box;
+    width:100%;
+  }
+  .comment-container{
+    width:100%;
+
+  }
+}

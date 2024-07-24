@@ -55,3 +55,11 @@ app-btn-add{
   margin-bottom: 20px;
   margin-top: 20px;
 }
+@media (width<=245px){
+  .quotes-container{
+    margin: 5px;
+  }
+  div{
+    margin: 5px;
+  }
+}

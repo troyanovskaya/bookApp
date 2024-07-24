@@ -1,5 +1,4 @@
 .quote-container{
-
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -39,5 +38,10 @@ hr{
     left:0px;
     bottom:15px;
     color: rgb(150, 20, 20);
+  }
+}
+@media (width<=245px){
+  .quote-container{
+    margin: 5px;
   }
 }

@@ -34,3 +34,15 @@ img{
   float: left;
   padding: 20px;
 }
+@media (width<=325px){
+  .img-container{
+    flex-wrap: wrap;
+    img{
+      width: 100%;
+      padding: 10px 0px;
+    }
+    p{
+      width: 100%;
+    }
+  }
+}

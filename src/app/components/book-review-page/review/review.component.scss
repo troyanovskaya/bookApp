@@ -3,6 +3,7 @@
   flex-direction: row;
   gap: 20px;
   padding: 20px;
+  box-sizing: border-box;
 }
 .img-container{
   text-align: center;
@@ -27,4 +28,25 @@ app-btn-add{
 }
 .delete{
   color: rgb(150, 20, 20);
+}
+@media (width<840px){
+  .review-container{
+    width: 100%;
+  }
+}
+@media (width<390px){
+  .container{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 0px;
+  }
+}
+@media (width<320px){
+  .container{
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    padding: 0px;
+  }
 }
