@@ -1,12 +1,16 @@
 app-list-header{
   margin: 20px;
 }
+app-book{
+  border: 0.5px solid grey;
+}
 .book-container{
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
   gap:20px;
   justify-content: center;
-  align-items:center;
+  align-items: stretch;
   margin-bottom: 20px;
 }
 .no-books{

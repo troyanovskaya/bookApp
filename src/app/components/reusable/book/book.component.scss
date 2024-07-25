@@ -1,37 +1,38 @@
 .wrapper{
   background-color: white;
   padding:20px;
-  max-width:600px;
-  min-height:200px;
-  border-radius:10px;
-  border: 0.5px solid grey;
+  width:250px;
+  height: auto;
+  .book-img{
+    width:200px;
+    height:250px;
+    padding: 10px;
+  }
 }
-.btn-3{
-  font-size: 1.3em;
-  padding: 10px;
-  border-radius: 8px;
-  width:max-content;
+.book{
+  font-weight: bolder;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  margin:10px;
 }
+.author{
+  color: grey;
+  box-sizing: border-box;
+  margin:10px;
+}
+
 .img-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap:0px;
-  float:left;
 }
-.book-img{
-  width:150px;
-  height:200px;
 
-  padding-left: 20px;
-  padding-right: 20px;
-
-}
-img.saved{
-  width:25px;
-  margin-right: 20px;
-}
+// img.saved{
+//   width:25px;
+//   margin-right: 20px;
+// }
 button{
   background-color: #182b5b;
   color:white;
@@ -39,6 +40,7 @@ button{
   white-space: nowrap;
 }
 .btn-container{
+  width:100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -47,17 +49,22 @@ button{
 app-btn-read{
   margin:5px;
 }
-@media (width<=545px){
-  .img-container{
-    width: 100%
+@media (width<=320px){
+  .wrapper{
+    padding: 5px;
+    img.book-img{
+      width:100px;
+      height:150px;
+    }
   }
+
 }
-@media (width<=350px){
+@media (width<=300px){
   app-rate{
     display:none;
   }
   .wrapper{
-    padding:5px;
+    width:200px;
   }
 }
 

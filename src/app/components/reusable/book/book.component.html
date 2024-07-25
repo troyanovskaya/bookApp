@@ -4,37 +4,39 @@
       <img routerLink="/books/{{this.book?._id}}" pointerD class="book-img"
         src="{{this.book?.book_img}}" alt="{{this.book?.book_name}}">
       <app-btn-read [book]="book"></app-btn-read>
-    </div>
-    <div class="description">
-      <div routerLink="/books/{{this.book?._id}}">
-        Name:
-        <span underlineD pointerD>
+      <div class="book" routerLink="/books/{{this.book?._id}}" >
           {{this.book?.book_name}}
-        </span>
       </div>
-      <div>
-        Author: <span underlineD pointerD routerLink="/authors/{{author}}"
+        <div class="author">
+        <span underlineD pointerD routerLink="/authors/{{author}}"
                   *ngFor="let author of this.book?.book_authors">
-                  {{author }} 
+                  {{author }}
                 </span>
       </div>
-      <div *ngIf="book?.book_series?.length!== 0">
+      <!-- <div *ngIf="book?.book_series?.length!== 0">
         Series:
         <span pointerD underlineD *ngFor="let s of book?.book_series">{{s }} </span>
       </div>
-      <div>Year: {{this.book?.book_edition_year}}</div>
+      <div>Year: {{this.book?.book_edition_year}}</div> -->
       <app-rate [rate]="book?.book_average_rate || 0" [book]="book"></app-rate>
-      <p *ngFor="let par of this.book?.book_description">&nbsp;&nbsp;{{par}}</p>
-      <div class="btn-container">
+      <!-- <div class="text">
+        <ng-container *ngFor="let par of this.book?.book_description; let i = index">
+          <p *ngIf="i==0">
+            &nbsp;&nbsp; {{par}}
+          </p>
+        </ng-container>
+      </div> -->
+
+
+
+
+
+      <!-- <div class="btn-container">
         <button pointerD opacityD class="btn-3" routerLink="/books/{{this.book?._id}}">
           Learn more
         </button>
-      </div>
-
-
-
-
-  </div>
+      </div> -->
+    </div>
 
 
 </div>
