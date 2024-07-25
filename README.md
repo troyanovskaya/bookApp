@@ -1,3 +1,12 @@
+# Attention
+
+To try logged in user features, use login:111 password: 111
+While loading the app for the first time, whait before data loads, which may take up to minute.
+
+# BookAppBack 
+
+This project backend was deployed on (https://bookappback.onrender.com)
+
 # BookApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
