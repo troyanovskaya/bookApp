@@ -1,20 +1,21 @@
 <div class="reviews-container">
-  <div class="label">Reviews from
+  <app-loader *ngIf="showLoader"></app-loader>
+  <div *ngIf="!showLoader" class="label">Reviews from
     <span underlineD pointerD routerLink="/books/{{this.book?._id}}">
       {{book?.book_name}}
     </span> ,
      by {{book?.book_authors?.join(', ')}}</div>
-  <div class="user-review" *ngIf="logInService.user && showCommentField">
+  <div class="user-review" *ngIf="logInService.user && showCommentField && !showLoader">
     <textarea class="textarea" placeholder="Write your own review..." name="user-review"
     cols="50" rows="10" [(ngModel)]="rew"></textarea>
     <button opacityD pointerD (click)="postReview()">Submit</button>
   </div>
-  <app-btn-add *ngIf="logInService.user" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
+  <app-btn-add *ngIf="logInService.user && !showLoader" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
 
-  <div *ngIf="!logInService.user">
+  <div *ngIf="!logInService.user && !showLoader">
     <div class="no-review">Only authorised users can leave reviews in this section. Sign in to continue!</div>
   </div>
-  <div *ngIf="reviews.length==0">
+  <div *ngIf="reviews.length==0 && !showLoader">
     <div class="no-review">No reviews here right now. Add some yourself!</div>
   </div>
   <app-review (reloadReviews)="reload()"  *ngFor="let r of reviews" [belongToUser]="this.logInService.user?._id == r.review_user" [review]="r"></app-review>

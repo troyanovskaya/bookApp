@@ -34,6 +34,11 @@ img{
   float: left;
   padding: 20px;
 }
+app-loader{
+  top: 20px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
 @media (width<=325px){
   .img-container{
     flex-wrap: wrap;

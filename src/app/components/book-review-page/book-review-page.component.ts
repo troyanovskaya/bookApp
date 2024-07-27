@@ -16,7 +16,7 @@ export class BookReviewPageComponent implements OnInit{
   book?: Book;
   id: String = '';
   reviews: Review[] = [];
-
+  showLoader = true;
   showCommentField:boolean = false;
   constructor(public logInService: LogInService, public reviewService: ReviewService,
     private route: ActivatedRoute, public booksService: BooksService
@@ -50,6 +50,7 @@ export class BookReviewPageComponent implements OnInit{
     this.route.params.subscribe( params => {
       this.id = params['id']
       this.booksService.getBook(this.id).subscribe( book => {
+        this.showLoader = false;
         this.book = book;
       });
       this.reviewService.getReviewByBookId(this.id).subscribe( reviews => {

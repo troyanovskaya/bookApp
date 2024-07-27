@@ -1,3 +1,4 @@
+
 <div class="slider" *ngIf="screenWidth > 675">
   <app-slider></app-slider>
 </div>
@@ -6,10 +7,13 @@
 <ng-container *ngFor="let book of filterService.results[searchGroup]; let i = index" >
   <app-book *ngIf="i < bookShown" [book]="book"></app-book>
 </ng-container>
-<div class="no-results" *ngIf="filterService.results[searchGroup].length == 0">
+<div class="no-results" *ngIf="filterService.results[searchGroup].length == 0 && !showLoader">
   No results found. Try again!
 </div>
+
 </div>
+<app-loader *ngIf="showLoader"></app-loader>
+
 <div *ngIf="bookShown < filterService.results[searchGroup].length" class="add-books">
   <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>
 </div>

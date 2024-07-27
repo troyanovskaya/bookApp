@@ -15,8 +15,13 @@
 .list-item:hover{
   background-color: #cfcdcd;
 }
-@media (width<=414px){
+@media (width<=540px){
   .dropdown{
     left: 10px;
+  }
+}
+@media (width<=300px){
+  .dropdown{
+    left: -5px;
   }
 }

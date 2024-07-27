@@ -1,5 +1,6 @@
 <div  class="quotes-container">
-  <div class="label">Quotes from
+  <app-loader *ngIf="showLoader"></app-loader>
+  <div *ngIf="!showLoader" class="label">Quotes from
     <span underlineD pointerD routerLink="/books/{{this.book?._id}}">
       {{book?.book_name}}
     </span> , by
@@ -12,15 +13,15 @@
     <textarea class="textarea" placeholder="Write the quote..." name="user-quote"
     cols="50" rows="10" [(ngModel)]="q"></textarea>
     <input type="text" [(ngModel)]="q_by">
-    <button opacityD pointerD (click)="postQuote()">Submit</button>
+    <button *ngIf="!showLoader" opacityD pointerD (click)="postQuote()">Submit</button>
 
   </div>
-  <app-btn-add *ngIf="logInService.user" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
+  <app-btn-add *ngIf="logInService.user && !showLoader" (visibilityChange)="changeVisibility($event)" [currentState]="showCommentField"></app-btn-add>
 
   <div *ngIf="!logInService.user">
     <div class="no-quote">Only authorised users can leave quotes in this section. Sign in to continue!</div>
   </div>
-  <div *ngIf="quotes.length==0">
+  <div *ngIf="quotes.length==0 && !showLoader">
     <div class="no-quote">No quotes here right now. Add some yourself!</div>
   </div>
   <hr *ngIf="quotes.length>0">

@@ -4,7 +4,7 @@
       <img routerLink="/books/{{this.book?._id}}" pointerD class="book-img"
         src="{{this.book?.book_img}}" alt="{{this.book?.book_name}}">
       <app-btn-read [book]="book"></app-btn-read>
-      <div class="book" routerLink="/books/{{this.book?._id}}" >
+      <div pointerD class="book" routerLink="/books/{{this.book?._id}}" >
           {{this.book?.book_name}}
       </div>
         <div class="author">

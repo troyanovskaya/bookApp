@@ -1,6 +1,7 @@
 <app-edit-comment *ngIf="editComment" [comm]="commToEdit" (closeWindow)="close()" (editedText)="updateComm($event)"></app-edit-comment>
 <app-header></app-header>
 <div class="container">
+  <app-loader *ngIf="showLoader"></app-loader>
   <div class="img-container">
     <img [src]="book?.book_img" [alt]="book?.book_name">
     <app-btn-read [book]="book"></app-btn-read>

@@ -13,6 +13,7 @@ results: {[key: string]: any } = {
 
 searchVal:EventEmitter<string> = new EventEmitter<string>();
 groupVal:EventEmitter<string> = new EventEmitter<string>();
+loadedVal:EventEmitter<boolean> = new EventEmitter<boolean>();
 constructor(public bookService: BooksService){}
 
 // loadAllBooks(){
@@ -24,7 +25,7 @@ constructor(public bookService: BooksService){}
 filter(){
   this.bookService.getAllBooks(`?str=${this.val}&sort=all`).subscribe(data => {
     this.results['all'] = data;
-    //this.groupVal.emit('all');
+    this.loadedVal.emit(true);
   });
   this.bookService.getAllBooks(`?str=${this.val}&sort=book_name`).subscribe(data => this.results['byName'] = data);
   this.bookService.getAllBooks(`?str=${this.val}&sort=book_authors`).subscribe(data => this.results['byAuthor'] = data);

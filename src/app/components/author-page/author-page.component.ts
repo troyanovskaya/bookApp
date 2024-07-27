@@ -18,6 +18,7 @@ export class AuthorPageComponent implements OnInit{
   author?: Author;
   books: Book[] = [];
   seriesBooks: {series: String, books:Book[]}[] = [];
+  showLoader: boolean = true;
   compareScores(a:any, b:any) {
     return a.book_series_numbers[0] - b.book_series_numbers[0];
   }
@@ -25,6 +26,7 @@ export class AuthorPageComponent implements OnInit{
     this.route.params.subscribe( params => {
       this.name = params['name'];
       this.authorService.getAuthorByName(this.name).subscribe( data =>{
+        this.showLoader = false;
         if(data.length!=0){
           this.author = data[0];
           for (let s of this.author.author_series){

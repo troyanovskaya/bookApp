@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Book } from 'src/app/schemas/book';
 import { FilterService } from 'src/app/services/filter.service';
 import { VisibilityService } from 'src/app/services/visibility.service';
@@ -12,6 +13,7 @@ export class HomePageComponent implements OnInit {
   public screenWidth: any;
   searchVal = '';
   searchGroup = 'all';
+  showLoader = true;
   //groups: string[] = ['all', 'byName', 'byAuthor', 'byDescription', 'byKeyWords', 'byGenres']
   bookShown: number = 10;
   chosenBooks: Book[] = [];
@@ -45,11 +47,12 @@ export class HomePageComponent implements OnInit {
     this.filterService.searchVal.subscribe(data => {
       this.searchVal = data;
       this.bookShown = 10;
-      // console.log(this.searchGroup)
-      // this.changeGroup(this.searchGroup);
     });
     this.filterService.groupVal.subscribe(data => {
       this.changeGroup(data);
+    });
+    this.filterService.loadedVal.subscribe(data => {
+      this.showLoader = false;
     });
     this.filterService.filter();
   }

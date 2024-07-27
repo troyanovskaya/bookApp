@@ -40,6 +40,7 @@ import { EditCommentComponent } from './components/book-page/edit-comment/edit-c
 import { RecPanelComponent } from './components/rec-page/rec-panel/rec-panel.component';
 import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-rec-page.component';
 import { MenuDropComponent } from './components/book-header/navigation/menu-drop/menu-drop.component';
+import { LoaderComponent } from './components/reusable/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,8 @@ import { MenuDropComponent } from './components/book-header/navigation/menu-drop
     EditCommentComponent,
     RecPanelComponent,
     NoUserRecPageComponent,
-    MenuDropComponent
+    MenuDropComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,7 @@ export class BookPageComponent implements OnInit {
   editComment:Boolean = false;
   commToEdit?:Comm;
   showCommentField:boolean = false;
+  showLoader = true;
   constructor( public booksService: BooksService,
      private route: ActivatedRoute, public logInService: LogInService,
      public userService: UserService, public commentService: CommentService){}
@@ -29,6 +30,7 @@ export class BookPageComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.id = params['id']
       this.booksService.getBook(this.id).subscribe( book => {
+        this.showLoader = false;
         this.book = book;
       });
       this.commentService.getCommentByBookId(this.id).subscribe( comments => {

@@ -18,6 +18,7 @@ export class BookQuotePageComponent implements OnInit{
   id: String = '';
   quotes: Quote[] = [];
   showCommentField:boolean = false;
+  showLoader = true;
   constructor(public logInService: LogInService, public quoteService: QuoteService,
     private route: ActivatedRoute, public booksService: BooksService
   ){}
@@ -52,6 +53,7 @@ export class BookQuotePageComponent implements OnInit{
     this.route.params.subscribe( params => {
       this.id = params['id']
       this.booksService.getBook(this.id).subscribe( book => {
+        this.showLoader = false;
         this.book = book;
         this.q_by = `- ${book.book_authors.join(', ')}, ${book.book_name}`;
       });

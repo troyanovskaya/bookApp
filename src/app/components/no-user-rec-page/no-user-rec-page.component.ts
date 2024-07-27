@@ -8,6 +8,7 @@ import { NoUserRecService } from 'src/app/services/no-user-rec.service';
 })
 export class NoUserRecPageComponent implements OnInit{
   bookShown = 10;
+  showLoader = true;
   constructor(public noUserRecService: NoUserRecService){}
   ngOnInit(): void {
     this.noUserRecService.clearAll();

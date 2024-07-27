@@ -1,4 +1,5 @@
 <div class="container">
+  <app-loader></app-loader>
   <ng-container *ngFor="let book of this.noUserRecService.scoredBooks; let i = index">
     <app-book *ngIf="i < bookShown" [book]="book.book"></app-book>
   </ng-container>
