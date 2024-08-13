@@ -5,7 +5,7 @@
     <app-book *ngIf="i < bookShown" [book]="book.book"></app-book>
   </ng-container>
   <div class="no-results" *ngIf="recArray.length == 0">
-    No results found. Try again!
+    <app-loader></app-loader>
   </div>
   <div *ngIf="recArray.length > bookShown  " class="add-books">
     <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>

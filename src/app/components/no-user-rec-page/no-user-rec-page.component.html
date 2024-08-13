@@ -1,12 +1,12 @@
 <div class="container">
-  <app-loader></app-loader>
   <ng-container *ngFor="let book of this.noUserRecService.scoredBooks; let i = index">
     <app-book *ngIf="i < bookShown" [book]="book.book"></app-book>
   </ng-container>
   <div class="no-results" *ngIf="this.noUserRecService.scoredBooks.length == 0">
-    No results found. Try again!
+    <app-loader></app-loader>
   </div>
-  <div *ngIf="this.noUserRecService.scoredBooks.length > bookShown" class="add-books">
-    <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>
-  </div>
+
+</div>
+<div *ngIf="this.noUserRecService.scoredBooks.length > bookShown" class="add-books">
+  <button (click)="showMoreBooks()" opacityD pointerD>Add more books</button>
 </div>

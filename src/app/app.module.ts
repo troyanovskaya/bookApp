@@ -39,7 +39,7 @@ import { AuthorPageComponent } from './components/author-page/author-page.compon
 import { EditCommentComponent } from './components/book-page/edit-comment/edit-comment.component';
 import { RecPanelComponent } from './components/rec-page/rec-panel/rec-panel.component';
 import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-rec-page.component';
-import { MenuDropComponent } from './components/book-header/navigation/menu-drop/menu-drop.component';
+import { MenuDropComponent } from './components/book-header/menu-drop/menu-drop.component';
 import { LoaderComponent } from './components/reusable/loader/loader.component';
 @NgModule({
   declarations: [

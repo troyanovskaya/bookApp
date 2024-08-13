@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LogInService } from 'src/app/services/log-in.service';
 import { VisibilityService } from 'src/app/services/visibility.service';
 
@@ -19,13 +20,15 @@ export class SignInFormComponent {
       if(data.body){
         this.logInService.user = data.body;
         localStorage.setItem('userObject', JSON.stringify(this.logInService.user));
+        this.router.navigate(['/home'])
         this.visibilityService.showSignForm=false;
       } else{
-        console.log('Odd error')
+        alert('User not found');
       }
 
     })
   }
-  constructor(public visibilityService: VisibilityService, public logInService: LogInService){}
+  constructor(public visibilityService: VisibilityService, public logInService: LogInService,
+    private router: Router){}
 
 }
