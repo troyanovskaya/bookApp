@@ -23,4 +23,15 @@
 .logo:hover{
   cursor:pointer;
 }
+@media (width<=350px){
+  .logo .logo-img{
+    max-width: 40px;
+    height: auto;
+  }
+}
+@media (width<=315px){
+  .logo{
+    padding: 5px;
+  }
+}
 
