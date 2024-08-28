@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { LogInService } from 'src/app/services/log-in.service';
 import { VisibilityService } from 'src/app/services/visibility.service';
 
@@ -8,24 +9,27 @@ import { VisibilityService } from 'src/app/services/visibility.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  email: String = '';
-  login: String = '';
-  password1: String = '';
-  password2: String = '';
+  @ViewChild('registrationForm') form?: NgForm;
   constructor(public visibilityService: VisibilityService, public logInService: LogInService){}
   onRegistrationSend(){
-    this.email = this.email.trim();
-    this.login = this.login.trim();
-    this.password1 = this.password1.trim();
-    this.password2 = this.password2.trim();
-    if(this.password1 !== this.password2){
+    let email = this.form?.value.email.trim();
+    let login = this.form?.value.login.trim();
+    let password1 = this.form?.value.password1.trim();
+    let password2 = this.form?.value.password2.trim();
+    if(password1 !== password2){
       alert('Passwords are not the same!');
-    } else if ( this.email && this.login && this.password1 && this.password2){
-      this.logInService.registerNewUser(this.password1, this.login, this.email).subscribe(
+    } else if ( email && login && password1 && password2){
+      this.logInService.registerNewUser(password1, login, email).subscribe(
         data =>{
-          console.log(data);
-          this.visibilityService.showSignForm = true;
-          this.visibilityService.showRegistrationForm = false;
+          if(data.token && data.user){
+            this.logInService.token = data.token;
+            localStorage.setItem('token', data.token);
+            this.logInService.user = data.user;
+            this.visibilityService.showRegistrationForm = false;
+          }
+
+
+
         }
       );
     } else{

@@ -1,15 +1,20 @@
 <div class=wrapper (click)="visibilityService.showRegistrationForm=false"></div>
 <div class="window">
   <div class="text-1">Registration</div>
-  <div class="input-container">
-    <input placeholder="email" type="text" [(ngModel)]="email">
-    <input placeholder="login" type="text" [(ngModel)]="login">
-    <input placeholder="password" type="password" [(ngModel)]="password1">
-    <input placeholder="password" type="password" [(ngModel)]="password2">
-  </div>
-  <div class="button-container">
+    <form (ngSubmit)="onRegistrationSend()" class="input-container" #registrationForm="ngForm">
+      <input placeholder="email" type="text" name="email" ngModel required email #femail="ngModel">
+      <div><small *ngIf="femail.invalid && femail.touched">*Email is the required field</small></div>
+      <input placeholder="login" type="text" name="login" ngModel required #flogin="ngModel">
+      <div><small *ngIf="flogin.invalid && flogin.touched">*Login is the required field</small></div>
+      <input placeholder="password" type="password" name="password1" ngModel required #fpass1="ngModel">
+      <div><small *ngIf="fpass1.invalid && fpass1.touched">*Password is the required field</small></div>
+      <input placeholder="password" type="password" name="password2" ngModel required #fpass2="ngModel">
+      <div><small *ngIf="fpass2.invalid && fpass2.touched">*Password is the required field</small></div>
+      <input type="submit" value="Submit" class="btn-3" [disabled]="!registrationForm.valid">
+    </form>
+  <!-- <div class="button-container">
     <button class="btn-3" (click)="onRegistrationSend()">Register</button>
-  </div>
+  </div> -->
 
 
   <div class="cross-container" (click)="visibilityService.showRegistrationForm=false">

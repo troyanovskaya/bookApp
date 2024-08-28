@@ -41,6 +41,7 @@ import { RecPanelComponent } from './components/rec-page/rec-panel/rec-panel.com
 import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-rec-page.component';
 import { MenuDropComponent } from './components/book-header/menu-drop/menu-drop.component';
 import { LoaderComponent } from './components/reusable/loader/loader.component';
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +89,7 @@ import { LoaderComponent } from './components/reusable/loader/loader.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
