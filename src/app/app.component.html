@@ -1,6 +1,6 @@
 <app-sign-in-form *ngIf="visibilityService.showSignForm" ></app-sign-in-form>
 <app-registration *ngIf="visibilityService.showRegistrationForm" ></app-registration>
-
+<app-reset-password *ngIf="visibilityService.showPasswordResetForm"></app-reset-password>
 <div class="wrapper">
   <app-book-header></app-book-header>
   <router-outlet></router-outlet>

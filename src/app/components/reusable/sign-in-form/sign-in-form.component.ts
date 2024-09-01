@@ -10,11 +10,13 @@ import { VisibilityService } from 'src/app/services/visibility.service';
   styleUrls: ['./sign-in-form.component.scss']
 })
 export class SignInFormComponent {
-  email:String = '';
-  password: String = '';
   @ViewChild('signForm') form?: NgForm;
   openRegistrationWindow(){
     this.visibilityService.showRegistrationForm=true;
+    this.visibilityService.showSignForm=false;
+  }
+  openResetWindow(){
+    this.visibilityService.showPasswordResetForm = true;
     this.visibilityService.showSignForm=false;
   }
   onSignInClick(){

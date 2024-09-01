@@ -10,6 +10,8 @@ import { RecPageComponent } from './components/rec-page/rec-page.component';
 import { AuthorPageComponent } from './components/author-page/author-page.component';
 import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-rec-page.component';
 import { CanActivateGuard } from './guards/can-activate.guard';
+import { ResetPasswordComponent } from './components/reusable/reset-password/reset-password.component';
+import { NewPasswordComponent } from './components/reusable/new-password/new-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -25,6 +27,7 @@ const routes: Routes = [
   { path: 'bookRecs', component: RecPageComponent, canActivate: [CanActivateGuard] },
   { path: 'noUserbookRecs', component: NoUserRecPageComponent},
   { path: 'authors/:name', component: AuthorPageComponent },
+  { path: 'users/passwordReset/:token', component: NewPasswordComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 

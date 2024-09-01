@@ -42,6 +42,8 @@ import { NoUserRecPageComponent } from './components/no-user-rec-page/no-user-re
 import { MenuDropComponent } from './components/book-header/menu-drop/menu-drop.component';
 import { LoaderComponent } from './components/reusable/loader/loader.component';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
+import { ResetPasswordComponent } from './components/reusable/reset-password/reset-password.component';
+import { NewPasswordComponent } from './components/reusable/new-password/new-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +83,9 @@ import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
     RecPanelComponent,
     NoUserRecPageComponent,
     MenuDropComponent,
-    LoaderComponent
+    LoaderComponent,
+    ResetPasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,

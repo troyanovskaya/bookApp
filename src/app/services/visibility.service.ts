@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class VisibilityService {
   showSignForm:boolean = false;
+  showPasswordResetForm:boolean = false;
   showRegistrationForm:boolean = false;
+  showNewPasswordForm:boolean = false;
   constructor() { }
 }

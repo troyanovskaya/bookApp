@@ -8,16 +8,10 @@
       <div><small *ngIf="fpass.invalid && fpass.touched">*Password is the required field</small></div>
       <input type="submit" value="Submit" class="btn-3" [disabled]="!signForm.valid">
     </form>
-
-
+  <div class="text-0" (click)="openResetWindow()">Reset password</div>
   <div class="text-2">Don't have an account?</div>
   <div class="text-3"
   (click)="openRegistrationWindow()" pointerD>Register now</div>
-  <!-- <div class="button-container">
-    <button class="btn-3" (click)="onSignInClick()">
-      Sign in
-    </button>
-  </div> -->
   <div class="cross-container" (click)="visibilityService.showSignForm=false">
     <img src="assets/cross.png" alt="cross">
   </div>

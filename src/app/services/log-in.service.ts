@@ -13,7 +13,7 @@ export class LogInService {
   handleError(error: HttpErrorResponse) {
     console.error(
       `Backend returned code ${error.status}, body was: `, error.error);
-    alert(error.error);
+    alert(error.error.message);
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
   getUserByEmailPassword(password:String, email: String){
@@ -40,7 +40,6 @@ export class LogInService {
   }
   checkLoggedInUser(){
     let token = localStorage.getItem('token');
-    console.log('checkLoggedInUser token ', token);
     if(token){
       this.getUserByToken().subscribe( data =>{
         if(data.body){
@@ -51,7 +50,6 @@ export class LogInService {
       localStorage.removeItem('token')
     }
 
-    console.log('retrievedObject: ', token);
   }
   registerNewUser(password: String, login: String, email: String){
     let user = {user_login: login, user_email: email, user_password: password};
@@ -60,6 +58,19 @@ export class LogInService {
     //('http://localhost:3000/users', user)
     .pipe(catchError(this.handleError));
   }
+  resetPassword(email: String){
+    return this.http.post<{result: String}>
+      ('https://bookappback.onrender.com/users/forgotPassword', {user_email: email})
+    //('http://localhost:3000/users/forgotPassword', {user_email: email})
+    .pipe(catchError(this.handleError));
+  }
+  newPassword(token: String = '', password: String){
+    return this.http.patch<{user: User, token: string}>
+      (`https://bookappback.onrender.com/users/passwordReset/${token}`, {user_password: password})
+    //(`http://localhost:3000/users/passwordReset/${token}`, {user_password: password})
+    .pipe(catchError(this.handleError));
+  }
+
   constructor(public http: HttpClient) { }
 
 }

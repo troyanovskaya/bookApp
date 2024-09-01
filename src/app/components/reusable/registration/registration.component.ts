@@ -27,9 +27,6 @@ export class RegistrationComponent {
             this.logInService.user = data.user;
             this.visibilityService.showRegistrationForm = false;
           }
-
-
-
         }
       );
     } else{
